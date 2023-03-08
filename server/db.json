@@ -1,0 +1,60 @@
+{
+  "users": [
+    {
+      "firstName": "Radhe",
+      "lastName": "Ayar",
+      "email": "radhe@gmail.com",
+      "password": "Radhe@321",
+      "role": "user",
+      "id": 1
+    },
+    {
+      "firstName": "Nilesh ",
+      "lastName": "Bandhiya",
+      "email": "nilesh@gmail.com",
+      "password": "Nilesh@321",
+      "role": "user",
+      "id": 2
+    },
+    {
+      "firstName": "Tulsi ",
+      "lastName": "Hudka",
+      "email": "tulsi@gmail.com",
+      "password": "Tulsi@321",
+      "role": "user",
+      "id": 3
+    },
+    {
+      "firstName": "Hetakshi ",
+      "lastName": "Patel",
+      "email": "hetaskhi@gmail.com",
+      "password": "Hetakshi@321",
+      "role": "user",
+      "id": 4
+    },
+    {
+      "firstName": "Shyam ",
+      "lastName": "Kasundra",
+      "email": "shyam@gmail.com",
+      "password": "Shyam@321",
+      "role": "user",
+      "id": 5
+    },
+    {
+      "firstName": "Krinal ",
+      "lastName": "Sonara",
+      "email": "krinal@gmail.com",
+      "password": "Krinal@321",
+      "role": "user",
+      "id": 6
+    },
+    {
+      "firstName": "Renuka ",
+      "lastName": "Varsani",
+      "email": "renuka@gmail.com",
+      "password": "Renuka@321",
+      "role": "user",
+      "id": 7
+    }
+  ]
+}
