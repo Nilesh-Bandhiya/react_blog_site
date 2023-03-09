@@ -1,0 +1,16 @@
+.nav-link{
+    text-decoration: none !important;
+    color: white !important;
+}
+
+.nav-link-mobile{
+    text-decoration: none !important;
+    color: black !important;
+}
+
+.forgot-link{
+    color: #1976d2 !important;
+}
+.footer-link{
+    color: rgba(0, 0, 0, 0.6) !important;
+}

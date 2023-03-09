@@ -6,17 +6,43 @@ import React, {
   useCallback,
 } from "react";
 import { AgGridReact } from "ag-grid-react";
+import cookie from 'react-cookies'
+import { useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
+
+const actionHandler = () =>{
+  return <>
+  <Button variant="contained" >View</Button>
+  <Button variant="contained">Delete</Button>
+  </>
+}
 
 const Users = () => {
+  console.log("token", cookie.load('token'));
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if(!cookie.load('token')){
+      navigate("/signin")
+    }
+  },[navigate])
+
+
   const gridRef = useRef();
   const [rowData, setRowData] = useState([]);
 
-  const [columnDefs, setColumnDefs] = useState([
-    { field: "id" },
-    { field: "firstName" },
-    { field: "lastName" },
-    { field: "email" },
-    { field: "password" },
+
+
+   // eslint-disable-next-line
+  const [columnDefs] = useState([
+    { field: "id", width: 50, },
+    { field: "firstName", width: 50, },
+    { field: "lastName", width: 50, },
+    { field: "email", width: 50, },
+    { field: "phoneNumber", width: 50, },
+    { field: "role", width: 50, },
+    { field: "Actions", cellRenderer: actionHandler, minWidth: 400,  },
   ]);
 
   const defaultColDef = useMemo(() => ({

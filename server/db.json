@@ -3,58 +3,150 @@
     {
       "firstName": "Radhe",
       "lastName": "Ayar",
+      "phoneNumber": "8980897334",
       "email": "radhe@gmail.com",
       "password": "Radhe@321",
-      "role": "user",
+      "cpassword": "Radhe@321",
+      "role": "admin",
       "id": 1
     },
     {
       "firstName": "Nilesh ",
       "lastName": "Bandhiya",
+      "phoneNumber": "8954665656",
       "email": "nilesh@gmail.com",
       "password": "Nilesh@321",
-      "role": "user",
+      "cpassword": "Nilesh@321",
+      "role": "admin",
       "id": 2
     },
     {
       "firstName": "Tulsi ",
       "lastName": "Hudka",
+      "phoneNumber": "7654876556",
       "email": "tulsi@gmail.com",
       "password": "Tulsi@321",
+      "cpassword": "Tulsi@321",
       "role": "user",
       "id": 3
     },
     {
       "firstName": "Hetakshi ",
       "lastName": "Patel",
+      "phoneNumber": "9874665656",
       "email": "hetaskhi@gmail.com",
       "password": "Hetakshi@321",
+      "cpassword": "Hetakshi@321",
       "role": "user",
       "id": 4
     },
     {
       "firstName": "Shyam ",
       "lastName": "Kasundra",
+      "phoneNumber": "7657895656",
       "email": "shyam@gmail.com",
       "password": "Shyam@321",
+      "cpassword": "Shyam@321",
       "role": "user",
       "id": 5
     },
     {
       "firstName": "Krinal ",
       "lastName": "Sonara",
+      "phoneNumber": "7984665656",
       "email": "krinal@gmail.com",
       "password": "Krinal@321",
+      "cpassword": "Krinal@321",
       "role": "user",
       "id": 6
     },
     {
       "firstName": "Renuka ",
       "lastName": "Varsani",
+      "phoneNumber": "7654785656",
       "email": "renuka@gmail.com",
       "password": "Renuka@321",
+      "cpassword": "Renuka@321",
       "role": "user",
       "id": 7
+    },
+    {
+      "firstName": "Ved ",
+      "lastName": "Patel",
+      "phoneNumber": "7654665657",
+      "email": "ved@gmail.com",
+      "password": "Ved@321",
+      "cpassword": "Ved@321",
+      "role": "user",
+      "id": 8
+    },
+    {
+      "firstName": "Ajay",
+      "lastName": "Rajput",
+      "phoneNumber": "7654665656",
+      "email": "ajay@gmail.com",
+      "password": "Ajay@321",
+      "cpassword": "Ajay@321",
+      "role": "user",
+      "id": 9
+    },
+    {
+      "firstName": "Bhavesh",
+      "lastName": "Prajapati",
+      "phoneNumber": "8977865656",
+      "email": "bhavesh@gmail.com",
+      "password": "Bhavesh@321",
+      "cpassword": "Bhavesh@321",
+      "role": "user",
+      "id": 10
+    },
+    {
+      "firstName": "Chirag",
+      "lastName": "Vaghasiya",
+      "phoneNumber": "8976856789",
+      "email": "chirag@gmal.com",
+      "password": "Chirag@321",
+      "cpassword": "Chirag@321",
+      "role": "user",
+      "id": 11
+    }
+  ],
+  "blogs": [
+    {
+      "id": 1,
+      "title": "‘Women’s history is women’s right’",
+      "description": "A tribute to overlooked innovators, good troublemakers, and remarkable women of the past, present, and future",
+      "image": "https://miro.medium.com/v2/resize:fill:200:134/1*q1bV1fG_FQLPbmv4svz2NA.png"
+    },
+    {
+      "id": 2,
+      "title": "What We’re Reading: To meet or not to meet?",
+      "description": "A few stories you may have missed this week",
+      "image": "https://miro.medium.com/v2/resize:fill:200:134/1*liYEIkafclN-rwdAqaZJ4Q.png"
+    },
+    {
+      "id": 3,
+      "title": "The art of quitting — lessons from my Ph.D. journey",
+      "description": "Advice Column for Graduate Students and Applicants",
+      "image": "https://miro.medium.com/v2/resize:fill:200:134/1*4-WRim5zyfn8nGYjtuUEdQ.jpeg"
+    },
+    {
+      "id": 4,
+      "title": "‘How ‘Should’ Makes Us Stupid — And How to Get Smart Again",
+      "description": "When we say we ‘should’ do something, we frame our goal in a way that makes change less likely. Here’s how to motivate d",
+      "image": "https://miro.medium.com/v2/resize:fill:200:134/1*s1aE1bTkYmdddkPTqePZuA.jpeg"
+    },
+    {
+      "id": 5,
+      "title": "GPT Is an Unreliable Information Store",
+      "description": "Understanding the limitations and dangers of large language models",
+      "image": "https://miro.medium.com/v2/resize:fill:200:134/1*Z9Msl9UY6vp_c-dIHzYqPQ.jpeg"
+    },
+    {
+      "id": 6,
+      "title": "Beginning Again At Fifty-Five",
+      "description": "In which I attempt to calculate the remaining years of my life and plan for the final act",
+      "image": "https://miro.medium.com/v2/resize:fill:200:134/1*F6ZwcDCqfcIakTpnEwuSmw.jpeg"
     }
   ]
 }

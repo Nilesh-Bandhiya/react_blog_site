@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -15,6 +15,8 @@ import Paper from "@mui/material/Paper";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import cookie from 'react-cookies'
+import { Link } from "react-router-dom";
 
 const Copyright = (props) => {
   return (
@@ -25,7 +27,7 @@ const Copyright = (props) => {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="#">
+      <Link className="footer-link" color="inherit" to="#">
         Blog App
       </Link>{" "}
       {new Date().getFullYear()}
@@ -35,8 +37,15 @@ const Copyright = (props) => {
 };
 
 const Login = () => {
+  const navigate = useNavigate()
 
-    const [users, setUsers] = useState([])
+  useEffect(() => {
+    if(cookie.load('token')){
+      navigate("/")
+    }
+  },[navigate])
+
+  const [users, setUsers] = useState([])
 
   useEffect(() => {
     fetch("http://localhost:5000/users")
@@ -69,24 +78,22 @@ const Login = () => {
     console.log("data", data);
 
     const user = users.find((user) => user.email === data.email);
+    console.log("role", user.role);
 
     if (user) {
-        if (data.password !== user.password) {
-          // Invalid password
-          console.log("Invalid Password");
-          setError("password", { type: "custom", message:"Invalid Password" }, { shouldFocus: true });
-        } else {
-         console.log("successfully submited");
-        }
+      if (data.password !== user.password) {
+        setError("password", { type: "custom", message: "Invalid Password or UserName" }, { shouldFocus: true });
       } else {
-        // Username not found
-        console.log("User is Not Valid");
-        setError("email", { type: "custom", message:"User is not Valid" }, { shouldFocus: true });
+        console.log("successfully submited");
+        let token = { user: user.email, role: user.role }
+        cookie.save('token', token, { path: '/' })
+        navigate("/")
       }
-
-      console.log("Form submited");
+    } else {
+      setError("email", { type: "custom", message: "User is not Valid" }, { shouldFocus: true });
     }
-  
+  }
+
 
   return (
     <Container component="main" maxWidth="xs">
@@ -157,12 +164,12 @@ const Login = () => {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link className="forgot-link" to="#" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link className="forgot-link" to="/signup" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
