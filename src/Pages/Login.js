@@ -58,6 +58,7 @@ const Login = () => {
 
   const {
     register,
+    setError,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -72,14 +73,18 @@ const Login = () => {
     if (user) {
         if (data.password !== user.password) {
           // Invalid password
-          console.log("Password is Not Valid");
+          console.log("Invalid Password");
+          setError("password", { type: "custom", message:"Invalid Password" }, { shouldFocus: true });
         } else {
          console.log("successfully submited");
         }
       } else {
         // Username not found
         console.log("User is Not Valid");
+        setError("email", { type: "custom", message:"User is not Valid" }, { shouldFocus: true });
       }
+
+      console.log("Form submited");
     }
   
 
