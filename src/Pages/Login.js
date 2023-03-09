@@ -39,12 +39,6 @@ const Copyright = (props) => {
 const Login = () => {
   const navigate = useNavigate()
 
-  useEffect(() => {
-    if(cookie.load('token')){
-      navigate("/")
-    }
-  },[navigate])
-
   const [users, setUsers] = useState([])
 
   useEffect(() => {
@@ -85,7 +79,7 @@ const Login = () => {
         setError("password", { type: "custom", message: "Invalid Password or UserName" }, { shouldFocus: true });
       } else {
         console.log("successfully submited");
-        let token = { user: user.email, role: user.role }
+        let token = {user:user.firstName , email: user.email, role: user.role }
         cookie.save('token', token, { path: '/' })
         navigate("/")
       }

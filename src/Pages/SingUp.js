@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -13,7 +13,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
-import cookie from 'react-cookies'
 import { Link } from "react-router-dom";
 
 function Copyright(props) {
@@ -36,12 +35,6 @@ function Copyright(props) {
 
 const SignUp = () => {
   const navigate =  useNavigate()
-
-  useEffect(() => {
-    if(cookie.load('token')){
-      navigate("/")
-    }
-  },[navigate])
 
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
