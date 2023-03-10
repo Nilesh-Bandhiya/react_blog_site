@@ -1,8 +1,8 @@
 import React from "react";
-import "./App.css"
+import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import About from "./Pages/About";
-import BlogDetail from "./Pages/BlogDetail";
+// import BlogDetail from "./Pages/BlogDetail";
 import Blogs from "./Pages/Blogs";
 // import Home from "./Pages/Home";
 import Login from "./Pages/Login";
@@ -15,14 +15,15 @@ const router = createBrowserRouter([
     path: "/",
     element: <MainLayout />,
     children: [
-      { index: true, element: <Users /> },
-      { path: "blogs", element: <Blogs /> },
+      { index: true, element: <Blogs /> },
+      { path: "users", element: <Users /> },
       { path: "about", element: <About /> },
-      { path: "blogs/:blogId", element: <BlogDetail /> },
+      // { path: "blogs/:blogId", element: <BlogDetail /> },
+      { path: "signup", element: <SignUp /> },
+      { path: "signin", element: <Login /> },
     ],
   },
-  { path: "signup", element: <SignUp /> },
-  { path: "signin", element: <Login /> },
+
 ]);
 
 function App() {

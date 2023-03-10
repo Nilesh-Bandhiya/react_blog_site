@@ -34,7 +34,7 @@
       "id": 3
     },
     {
-      "firstName": "Hetakshi ",
+      "firstName": "Hetu",
       "lastName": "Patel",
       "phoneNumber": "9874665656",
       "email": "hetaskhi@gmail.com",
@@ -51,7 +51,7 @@
       "email": "shyam@gmail.com",
       "password": "Shyam@321",
       "cpassword": "Shyam@321",
-      "role": "user",
+      "role": "admin",
       "active": false,
       "id": 5
     },
@@ -120,9 +120,19 @@
       "role": "user",
       "active": false,
       "id": 11
+    },
+    {
+      "firstName": "Unnat",
+      "lastName": "Patel",
+      "phoneNumber": "7896676767",
+      "email": "unnat@gmail.com",
+      "password": "Unnat@321",
+      "cpassword": "Unnat@321",
+      "role": "user",
+      "id": 12
     }
   ],
-  "blogs": [
+  "blogss": [
     {
       "id": 1,
       "title": "‘Women’s history is women’s right’",
@@ -158,6 +168,92 @@
       "title": "Beginning Again At Fifty-Five",
       "description": "In which I attempt to calculate the remaining years of my life and plan for the final act",
       "image": "https://miro.medium.com/v2/resize:fill:200:134/1*F6ZwcDCqfcIakTpnEwuSmw.jpeg"
+    }
+  ],
+  "blogs": [
+    {
+      "id": 1,
+      "title": "Javascript",
+      "description": "JavaScript is a high-level, often just-in-time compiled language that conforms to the ECMAScript standard.[10] It has dynamic typing, prototype-based object-orientation, and first-class functions. It is multi-paradigm, supporting event-driven, functional, and imperative programming styles. It has application programming interfaces (APIs) for working with text, dates, regular expressions, standard data structures, and the Document Object Model (DOM).The ECMAScript standard does not include any input/output (I/O), such as networking, storage, or graphics facilities. In practice, the web browser or other runtime system provides JavaScript APIs for I/O.JavaScript engines were originally used only in web browsers, but are now core components of some servers and a variety of applications. The most popular runtime system for this usage is Node.js. Although Java and JavaScript are similar in name, syntax, and respective standard libraries, the two languages are distinct and differ greatly in design.",
+      "author": "Nishant Singh ",
+      "category": "CS-IT"
+    },
+    {
+      "id": 2,
+      "title": "Data Structure ",
+      "description": "In computer science, a data structure is a data organization, management, and storage format that is usually chosen for efficient access to data. More precisely, a data structure is a collection of data values, the relationships among them, and the functions or operations that can be applied to the data, i.e., it is an algebraic structure about data. Data structures provide a means to manage large amounts of data efficiently for uses such as large databases and internet indexing services. Usually, efficient data structures are key to designing efficient algorithms. Some formal design methods and programming languages emphasize data structures, rather than algorithms, as the key organizing factor in software design. Data structures can be used to organize the storage and retrieval of information stored in both main memory and secondary memory.",
+      "author": "Suresh Kr",
+      "category": "CS-IT"
+    },
+    {
+      "id": 3,
+      "title": "Algorithm",
+      "description": "Algorithms can be expressed in many kinds of notation, including natural languages, pseudocode, flowcharts, drakon-charts, programming languages or control tables (processed by interpreters). Natural language expressions of algorithms tend to be verbose and ambiguous, and are rarely used for complex or technical algorithms. Pseudocode, flowcharts, drakon-charts and control tables are structured ways to express algorithms that avoid many of the ambiguities common in the statements based on natural language. Programming languages are primarily intended for expressing algorithms in a form that can be executed by a computer, but are also often used as a way to define or document algorithms.There is a wide variety of representations possible and one can express a given Turing machine program as a sequence of machine tables (see finite-state machine, state transition table and control table for more), as flowcharts and drakon-charts (see state diagram for more), or as a form of rudimentary machine code or assembly code called sets of quadruples (see Turing machine for more).",
+      "author": "Monu Kr",
+      "category": "CS-IT"
+    },
+    {
+      "id": 4,
+      "title": "Computer Network",
+      "description": "A computer network is a set of computers sharing resources located on or provided by network nodes. The computers use common communication protocols over digital interconnections to communicate with each other. These interconnections are made up of telecommunication network technologies, based on physically wired, optical, and wireless radio-frequency methods that may be arranged in a variety of network topologies.The nodes of a computer network can include personal computers, servers, networking hardware, or other specialized or general-purpose hosts. They are identified by network addresses, and may have hostnames. Hostnames serve as memorable labels for the nodes, rarely changed after initial assignment. Network addresses serve for locating and identifying the nodes by communication protocols such as the Internet Protocol.",
+      "author": "Sonu Kr",
+      "category": "CS-IT"
+    },
+    {
+      "id": 5,
+      "title": "Dan Flying Solo",
+      "description": "Dan is one of the best travel bloggers in the world, hands down. Born and raised in the UK, he is an incredible writer and photographer whose work has been featured in many major publications, including Travel + Leisure and National Geographic. I would be remiss if I covered the best blogs on travel without mentioning him.I had the privilege and pleasure of meeting Dan on a press trip in Aruba back in 2018, and we have been friends ever since. Dan covers a variety of exotic destinations on his travel blog, Dan Flying Solo, with a focus on lesser-known places. In addition to his blog, Dan is a Lonely Planet Ambassador and contributor to the companys guidebooks.",
+      "author": "Pico Iyer",
+      "category": "Travel"
+    },
+    {
+      "id": 6,
+      "title": "Travel Tom Tom",
+      "description": "Travel bloggers can wear many hats ranging from informational and enlightening to funny and entertaining. Fortunately, Travel Tom Tom gives his audience the best of both worlds. This Dutch blogger (and vlogger) has been traveling the world continuously since 2012, visiting 147 countries and sharing many serendipitous moments and laughs along the way.Im a huge fan of this guy. Hes one of the very few travel bloggers that shares his travel experiences in a raw and authentic way. He doesnt sugarcoat anything he will challenge your beliefs and show you things that are uncomfortable (i.e. tourist scams and culturally sensitive topics) all while getting lost in exotic places and dancing with locals. I encourage everyone with a sense of humor to check out his page (his IG shows his personality much more than his website). If youre looking to live vicariously through someone elses adventures, Travel Tom Tom is your man!",
+      "author": "Jan Morris",
+      "category": "Travel"
+    },
+    {
+      "id": 7,
+      "title": " Y Travel ",
+      "description": "Born in the Central Coast of Australia, this Aussie couple has lived in five countries and now reside in North Carolina. They jet set all over the world with their two daughters, sharing tips and inspo from their travel adventures.I met Caz on a press trip in Northern California a few months ago and have thoroughly enjoyed following her familys adventurers ever since. There content isnt just a highlight reel, either. In addition to sharing breathtaking and inspiring travel content, they also share the challenges they encounter along the way, as well as raw and authentic experiences that you dont typically get with other vacation bloggers. I really admire their work and I think you will, too!",
+      "author": "Bill Bryson",
+      "category": "Travel"
+    },
+    {
+      "id": 8,
+      "title": " Cookie and Kate ",
+      "description": "Cookie and Kate is all about celebrating good food. Kate is Kathryne Taylor. Cookie is her dog which Kate describes as a “mystery mutt,” or as a DNA test found, half schipperke and half dachshund/Australian koolie mix.Kate is a photographer and cook from Oklahoma. She created the blog in 2010 and now works on it full-time.Like many of the other top food blogs featured here, Cookie and Kate features vegetarian and whole food recipes.The site makes it easy to search for recipes. You can look for recipes by Course, Cuisine, Diet, Everyday, Ingredient, or Season.",
+      "author": "Nandita Iyer",
+      "category": "Food"
+    },
+    {
+      "id": 9,
+      "title": " Minimalist Baker ",
+      "description": "Minimalist Baker is one of those sites where the name says it all. It shares plant-based recipes requiring 10 ingredients or less, 1 bowl, or 30 minutes or less to prepare. It publishes a new recipe every three days, with a mixture of savory and sweet dishes.Dana Shultz is the recipe developer and blogger. She has a deep love for recipe experimentation and food photography. She has even expanded into creating a Essentials of Building a Great Food Blog Course.Despite the use of the word “baker” in the sites name, it covers many different types of (predominantly vegan) cooking sweets, entrees, breakfast, snacks, sides, and beverages.",
+      "author": "Richa Hingle",
+      "category": "Food"
+    },
+    {
+      "id": 10,
+      "title": " Smitten Kitchen ",
+      "description": "Smitten Kitchen features delectable images of meals demanding to be eaten. Therefore should be no surprise that Smitten Kitchen has found great popularity with serious food fans.Smitten Kitchen summarizes itself as being “Fearless cooking from a tiny kitchen in New York City.” It was created by Deb Perelman who obsessed with the intricacies of food and cooking. As she says on her About page, she loves being able to wake and cook whatever she feels like that day.The recipes are the heart of this site. There is a particular emphasis on stepped-up comfort foods. The site also includes numerous tutorials on topics as diverse as how to poach an egg and how to make tart doughs that dont shrink up on you.Deb makes a point of only using commonly available ingredients.The Recipes page splits all of the sites recipes up by type, with additional subdivisions for Fruit, Meat, Sweets, and Vegetables.",
+      "author": "Ranjini Rao",
+      "category": "Food"
+    },
+    {
+      "title": "ReacJs Roadmap",
+      "author": "Radhe Ayar",
+      "category": "CS-IT",
+      "description": "react js is framework for frontend and its work on javascript and using react we use very powerful web app.",
+      "id": 11
+    },
+    {
+      "title": "Node Learning",
+      "author": "Nilesh Bandhiya",
+      "category": "IT",
+      "description": "Node is Best for backend work can you see that ",
+      "id": 12
     }
   ]
 }

@@ -16,7 +16,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Link, useNavigate } from "react-router-dom";
 import cookie from "react-cookies";
 
-const drawerWidth = 200;
+const drawerWidth = 180;
 const pages = ["Home", "About"];
 const settings = ["Profile", "Logout"];
 

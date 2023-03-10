@@ -110,7 +110,7 @@ const Users = () => {
   useEffect(() => {
     fetch("http://localhost:5000/users")
       .then((result) => result.json())
-      .then((rowData) => setRowData(rowData));
+      .then((rowData) => setRowData(rowData)).catch((err) => console.log(err.message))
   }, []);
 
   return (
@@ -121,7 +121,7 @@ const Users = () => {
           margin: " 0 auto",
           boxSizing: "border-box",
           height: "80vh",
-          width: "82vw",
+          width: "84vw",
         }}
       >
         <AgGridReact
