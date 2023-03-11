@@ -1,10 +1,18 @@
-import React from 'react'
-import { Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText } from '@mui/material'
+import React from "react";
+import {
+  Divider,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+} from "@mui/material";
 import { styled } from "@mui/material/styles";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-const drawerWidth = 180
+const drawerWidth = 180;
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -38,21 +46,23 @@ const SideBar = ({ handleDrawerClose, open }) => {
       <Divider />
       <List>
         {["My Blogs", "All Blogs", "Users"].map((text, index) => (
-          <ListItem key={index} disablePadding>
-            <ListItemButton>
-              <Link
-                className='nav-link-black'
-                to={`/${text.toLowerCase() === "all blogs" ? "" : text.toLowerCase()
-                  }`}
-              >
+          <Link
+            key={index}
+            className="nav-link-black"
+            to={`/${
+              text.toLowerCase() === "all blogs" ? "" : text.toLowerCase()
+            }`}
+          >
+            <ListItem disablePadding>
+              <ListItemButton>
                 <ListItemText primary={text} />
-                </Link>
-            </ListItemButton>
-          </ListItem>
+              </ListItemButton>
+            </ListItem>
+          </Link>
         ))}
       </List>
     </Drawer>
-  )
-}
+  );
+};
 
-export default SideBar
+export default SideBar;

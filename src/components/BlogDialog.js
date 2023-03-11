@@ -9,9 +9,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-const BlogDialog = ({ open, handleClose, formData }) => {
+const BlogDialog = ({ open, handleEditClose, formData, currentUserId }) => {
 
-    let { id, title, author, category, description } = formData;
+    let { id, image, title, author, category, description } = formData;
 
     const validation = yup.object().shape({
         title: yup
@@ -25,6 +25,10 @@ const BlogDialog = ({ open, handleClose, formData }) => {
         category: yup
             .string()
             .required("Category is Required"),
+
+        img: yup
+            .string()
+            .required("Image is Required"),
 
         description: yup
             .string()
@@ -47,18 +51,23 @@ const BlogDialog = ({ open, handleClose, formData }) => {
             setValue('title', title, { shouldValidate: false }, { shouldTouch: true },)
             setValue('author', author, { shouldValidate: false }, { shouldTouch: true },)
             setValue('category', category, { shouldValidate: false }, { shouldTouch: true },)
+            setValue('img', image, { shouldValidate: false }, { shouldTouch: true },)
             setValue('description', description, { shouldValidate: false }, { shouldTouch: true },)
         } else {
             setValue('title', '', { shouldValidate: false }, { shouldTouch: true },)
             setValue('author', '', { shouldValidate: false }, { shouldTouch: true },)
             setValue('category', '', { shouldValidate: false }, { shouldTouch: true },)
+            setValue('img', '', { shouldValidate: false }, { shouldTouch: true },)
             setValue('description', '', { shouldValidate: false }, { shouldTouch: true },)
         }
-    }, [author, category, description, id, setValue, title])
+    }, [author, category, description, id, title, image, setValue])
 
 
 
     const addBlogHandler = (data) => {
+
+        // when new blog added we also save which admin add this blog
+        let newData = { ...data, userId: currentUserId }
 
         if (id) {
             fetch(`http://localhost:5000/blogs/${id}`, {
@@ -83,7 +92,7 @@ const BlogDialog = ({ open, handleClose, formData }) => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(data),
+                body: JSON.stringify(newData),
             })
                 .then((response) => response.json())
                 .then((data) => {
@@ -94,12 +103,11 @@ const BlogDialog = ({ open, handleClose, formData }) => {
                 });
         }
 
-
-
-        handleClose();
+        handleEditClose();
         setValue('title', '', { shouldValidate: false }, { shouldTouch: true },)
         setValue('author', '', { shouldValidate: false }, { shouldTouch: true },)
         setValue('category', '', { shouldValidate: false }, { shouldTouch: true },)
+        setValue('img', '', { shouldValidate: false }, { shouldTouch: true },)
         setValue('description', '', { shouldValidate: false }, { shouldTouch: true },)
 
     }
@@ -109,7 +117,7 @@ const BlogDialog = ({ open, handleClose, formData }) => {
         <div>
             <Dialog
                 open={open}
-                onClose={handleClose}
+                onClose={handleEditClose}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
@@ -172,6 +180,19 @@ const BlogDialog = ({ open, handleClose, formData }) => {
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
+                                    <TextField
+                                        required
+                                        fullWidth
+                                        {...register("img")}
+                                        error={errors.img ? true : false}
+                                        helperText={errors.img?.message}
+                                        id="img"
+                                        label="Image"
+                                        name="img"
+                                        autoComplete="img"
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
                                     <Textarea
                                         required {...register("description")}
                                         error={errors.description ? true : false}
@@ -188,7 +209,7 @@ const BlogDialog = ({ open, handleClose, formData }) => {
                                     marginTop: "20px"
                                 }}
                             >
-                                <Button type='button' variant='outlined' color='error' onClick={handleClose} sx={{ marginRight: "10px" }}>Cancel</Button>
+                                <Button type='button' variant='outlined' color='error' onClick={handleEditClose} sx={{ marginRight: "10px" }}>Cancel</Button>
                                 <Button type='submit' variant='contained' color={id ? "success" : "primary"} autoFocus>
                                     {id ? "Update" : "Add"}
                                 </Button>

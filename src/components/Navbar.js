@@ -6,7 +6,6 @@ import {
   Menu,
   MenuItem,
   Toolbar,
-  Tooltip,
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
@@ -38,7 +37,6 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 const Navbar = ({ handleDrawerOpen, open }) => {
-
   const navigate = useNavigate();
 
   const currentUser = cookie.load("token")?.user;
@@ -54,7 +52,7 @@ const Navbar = ({ handleDrawerOpen, open }) => {
     console.log(key);
     if (key === "Logout") {
       cookie.remove("token", { path: "/" });
-      navigate("/signin")
+      navigate("/signin");
     }
     setAnchorElUser(null);
   };
@@ -105,11 +103,17 @@ const Navbar = ({ handleDrawerOpen, open }) => {
           ))}
         </Box>
         <Box sx={{ flexGrow: 0 }}>
-          <Tooltip title="Open settings">
+          {currentUser ? (
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
               <Avatar alt={currentUser} src="....." />
             </IconButton>
-          </Tooltip>
+          ) : (
+            <Button variant="contained">
+              <Link to="/signin" className="nav-link">
+                Login
+              </Link>
+            </Button>
+          )}
           <Menu
             sx={{ mt: "45px" }}
             id="menu-appbar"

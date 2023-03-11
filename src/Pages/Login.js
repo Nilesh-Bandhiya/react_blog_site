@@ -79,9 +79,9 @@ const Login = () => {
         setError("password", { type: "custom", message: "Invalid Password or UserName" }, { shouldFocus: true });
       } else {
         console.log("successfully submited");
-        let token = {user:user.firstName , email: user.email, role: user.role }
+        let token = {user:user.firstName , email: user.email, role: user.role, userId: user.id }
         cookie.save('token', token, { path: '/' })
-        navigate("/")
+        navigate("/") 
       }
     } else {
       setError("email", { type: "custom", message: "User is not Valid" }, { shouldFocus: true });
@@ -156,12 +156,7 @@ const Login = () => {
             >
               Sign In
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link className="forgot-link" to="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
+            <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link className="forgot-link" to="/signup" variant="body2">
                   {"Don't have an account? Sign Up"}

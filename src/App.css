@@ -8,6 +8,11 @@
     color: black !important;
 }
 
+.link-blue{
+    text-decoration: none !important;
+    color: blueviolet !important;
+}
+
 .forgot-link{
     color: #1976d2 !important;
 }
