@@ -50,7 +50,7 @@ const SideBar = ({ handleDrawerClose, open }) => {
             key={index}
             className="nav-link-black"
             to={`/${
-              text.toLowerCase() === "all blogs" ? "" : text.toLowerCase()
+              text.toLowerCase() === "all blogs" ? "" : text.split(" ").join("").toLowerCase()
             }`}
           >
             <ListItem disablePadding>

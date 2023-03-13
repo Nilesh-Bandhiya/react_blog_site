@@ -3,8 +3,11 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
+import {useDispatch} from "react-redux"
+import { getBlogs } from "../store/blogs-slice";
 
 const CardDialog = ({ open, handleDeleteClose, data }) => {
+  const dispatch = useDispatch()
   let { id, title } = data;
 
   const handleDeleteBlog = () => {
@@ -20,6 +23,7 @@ const CardDialog = ({ open, handleDeleteClose, data }) => {
       });
 
     handleDeleteClose();
+    dispatch(getBlogs())
   };
 
   return (

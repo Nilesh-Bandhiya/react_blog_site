@@ -31,12 +31,12 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
   justifyContent: "flex-end",
 }));
 
 const MainLayout = () => {
+
   const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
@@ -47,13 +47,14 @@ const MainLayout = () => {
     setOpen(false);
   };
 
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
 
-      <Navbar handleDrawerOpen={handleDrawerOpen} open={open} />
+      <Navbar handleDrawerOpen={handleDrawerOpen} handleDrawerClose={handleDrawerClose} open={open}  />
 
-      <SideBar handleDrawerClose={handleDrawerClose} open={open} />
+      <SideBar handleDrawerClose={handleDrawerClose} open={open}/>
 
       <Main open={open}>
         <DrawerHeader />

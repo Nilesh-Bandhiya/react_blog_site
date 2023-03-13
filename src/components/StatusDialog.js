@@ -3,8 +3,13 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
+import {useDispatch} from "react-redux"
+import { getUsers } from "../store/users-slice";
 
 const StatusDialog = ({ open, handleStatusClose, data }) => {
+
+  const dispatch = useDispatch()
+
   let { id, firstName, active } = data;
 
   const statusChangeHandler = () => {
@@ -26,6 +31,7 @@ const StatusDialog = ({ open, handleStatusClose, data }) => {
         console.error("Error:", error);
       });
     handleStatusClose();
+    dispatch(getUsers())
   };
 
   return (

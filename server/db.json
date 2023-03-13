@@ -34,10 +34,10 @@
       "id": 3
     },
     {
-      "firstName": "Hetu",
+      "firstName": "Hetakshi",
       "lastName": "Patel",
       "phoneNumber": "9874665656",
-      "email": "hetaskhi@gmail.com",
+      "email": "hetakshi@gmail.com",
       "password": "Hetakshi@321",
       "cpassword": "Hetakshi@321",
       "role": "user",
@@ -89,17 +89,6 @@
       "id": 8
     },
     {
-      "firstName": "Ajay",
-      "lastName": "Rajput",
-      "phoneNumber": "7654665656",
-      "email": "ajay@gmail.com",
-      "password": "Ajay@321",
-      "cpassword": "Ajay@321",
-      "role": "user",
-      "active": false,
-      "id": 9
-    },
-    {
       "firstName": "Bhavesh",
       "lastName": "Prajapati",
       "phoneNumber": "8977865656",
@@ -108,67 +97,28 @@
       "cpassword": "Bhavesh@321",
       "role": "user",
       "active": true,
-      "id": 10
+      "id": 9
     },
     {
-      "firstName": "Chirag",
-      "lastName": "Vaghasiya",
-      "phoneNumber": "8976856789",
-      "email": "chirag@gmal.com",
-      "password": "Chirag@321",
-      "cpassword": "Chirag@321",
+      "firstName": "Ajay",
+      "lastName": "Rajput",
+      "phoneNumber": "7654665656",
+      "email": "ajay@gmail.com",
+      "password": "Ajay@321",
+      "cpassword": "Ajay@321",
       "role": "user",
       "active": false,
-      "id": 11
-    }
-  ],
-  "blogss": [
-    {
-      "id": 1,
-      "title": "‘Women’s history is women’s right’",
-      "description": "A tribute to overlooked innovators, good troublemakers, and remarkable women of the past, present, and future",
-      "image": "https://miro.medium.com/v2/resize:fill:200:134/1*q1bV1fG_FQLPbmv4svz2NA.png"
-    },
-    {
-      "id": 2,
-      "title": "What We’re Reading: To meet or not to meet?",
-      "description": "A few stories you may have missed this week",
-      "image": "https://miro.medium.com/v2/resize:fill:200:134/1*liYEIkafclN-rwdAqaZJ4Q.png"
-    },
-    {
-      "id": 3,
-      "title": "The art of quitting — lessons from my Ph.D. journey",
-      "description": "Advice Column for Graduate Students and Applicants",
-      "image": "https://miro.medium.com/v2/resize:fill:200:134/1*4-WRim5zyfn8nGYjtuUEdQ.jpeg"
-    },
-    {
-      "id": 4,
-      "title": "‘How ‘Should’ Makes Us Stupid — And How to Get Smart Again",
-      "description": "When we say we ‘should’ do something, we frame our goal in a way that makes change less likely. Here’s how to motivate d",
-      "image": "https://miro.medium.com/v2/resize:fill:200:134/1*s1aE1bTkYmdddkPTqePZuA.jpeg"
-    },
-    {
-      "id": 5,
-      "title": "GPT Is an Unreliable Information Store",
-      "description": "Understanding the limitations and dangers of large language models",
-      "image": "https://miro.medium.com/v2/resize:fill:200:134/1*Z9Msl9UY6vp_c-dIHzYqPQ.jpeg"
-    },
-    {
-      "id": 6,
-      "title": "Beginning Again At Fifty-Five",
-      "description": "In which I attempt to calculate the remaining years of my life and plan for the final act",
-      "image": "https://miro.medium.com/v2/resize:fill:200:134/1*F6ZwcDCqfcIakTpnEwuSmw.jpeg"
+      "id": 10
     }
   ],
   "blogs": [
     {
-      "id": 1,
-      "userId": 1,
       "title": "Javascript",
+      "author": "Nishant Singh",
+      "category": "CS-IT",
       "image": "https://miro.medium.com/v2/resize:fill:200:134/1*liYEIkafclN-rwdAqaZJ4Q.png",
       "description": "JavaScript is a high-level, often just-in-time compiled language that conforms to the ECMAScript standard.[10] It has dynamic typing, prototype-based object-orientation, and first-class functions. It is multi-paradigm, supporting event-driven, functional, and imperative programming styles. It has application programming interfaces (APIs) for working with text, dates, regular expressions, standard data structures, and the Document Object Model (DOM).The ECMAScript standard does not include any input/output (I/O), such as networking, storage, or graphics facilities. In practice, the web browser or other runtime system provides JavaScript APIs for I/O.JavaScript engines were originally used only in web browsers, but are now core components of some servers and a variety of applications. The most popular runtime system for this usage is Node.js. Although Java and JavaScript are similar in name, syntax, and respective standard libraries, the two languages are distinct and differ greatly in design.",
-      "author": "Nishant Singh ",
-      "category": "CS-IT"
+      "id": 1
     },
     {
       "id": 2,
@@ -250,15 +200,6 @@
       "author": "Ranjini Rao",
       "image": "https://miro.medium.com/v2/resize:fill:200:134/1*q1bV1fG_FQLPbmv4svz2NA.png",
       "category": "Food"
-    },
-    {
-      "title": "ReacJs Roadmap",
-      "author": "Radhe Ayar",
-      "category": "CS-IT",
-      "image": "https://miro.medium.com/v2/resize:fill:200:134/1*q1bV1fG_FQLPbmv4svz2NA.png",
-      "description": "react js is framework for frontend and its work on javascript and using react we use very powerful web app.",
-      "id": 11,
-      "userId": 1
     }
   ]
 }

@@ -3,11 +3,13 @@ import { AgGridReact } from "ag-grid-react";
 import IconButton from "@mui/material/IconButton";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Button } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import BlogDialog from "../components/BlogDialog";
 import CardDialog from "../components/CardDialog";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import cookie from "react-cookies";
+import { useSelector, useDispatch } from "react-redux";
+import { getBlogs } from "../store/blogs-slice";
 
 const actionHandler = ({ handleDeleteOpen, handleEditOpen, data }) => {
   const editBlogHandler = () => {
@@ -57,16 +59,36 @@ const titleLinkHandler = ({ data, isLoggedIn }) => {
   );
 };
 
+const idHandler = (e) => {
+  return <>{e?.node?.rowIndex + 1}</>;
+};
+
 const Blogs = () => {
+  const dispatch = useDispatch();
+  const location = useLocation();
   let token = cookie.load("token");
   let currentUserId = token?.userId;
   let isAdmin = token?.role === "admin";
 
-  const [rowData, setRowData] = useState([]);
+  const { blogs } = useSelector((state) => state?.blog);
+
+  const [blogsData, setBlogsData] = useState(blogs);
   const [editOpen, setEditOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [formData, setFormData] = useState({});
   const [data, setData] = useState({});
+  // const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    if (isAdmin) {
+      if (location.pathname === "/myblogs") {
+        let myBlogs = blogs.filter((blog) => blog.userId === currentUserId);
+        setBlogsData(myBlogs);
+      } else {
+        setBlogsData(blogs);
+      }
+    }
+  }, [blogs, currentUserId, isAdmin, location.pathname]);
 
   const handleEditOpen = (data) => {
     setFormData(data);
@@ -87,7 +109,14 @@ const Blogs = () => {
   };
 
   const [columnDefs, setColumnDefs] = useState([
-    { field: "id", minWidth: 50, width: 60, maxWidth: 70 },
+    {
+      field: "Id",
+      minWidth: 50,
+      width: 60,
+      maxWidth: 70,
+      cellRenderer: idHandler,
+    },
+
     {
       field: "title",
       minWidth: 120,
@@ -145,12 +174,44 @@ const Blogs = () => {
     []
   );
 
+  const searchTableHandler = () => {
+  
+    // let filteredBlogs = blogsData.filter(
+    //   (blog) =>
+    //     blog.title.toLowerCase().includes(search.toLowerCase()) ||
+    //     blog.author.toLowerCase().includes(search.toLowerCase()) ||
+    //     blog.description.toLowerCase().includes(search.toLowerCase()) ||
+    //     blog.category.toLowerCase().includes(search.toLowerCase())
+    // );
+    // console.log("filtered", filteredBlogs);
+    // if (search) {
+    //   setBlogsData(filteredBlogs);
+    // } else {
+    //   setBlogsData(blogs)
+    // }
+  };
+
+  const searchHanlder = (e) => {
+    let search = e.target.value;
+    console.log(search);
+    let filteredBlogs = blogsData.filter(
+      (blog) =>
+        blog.title.toLowerCase().includes(search.toLowerCase()) ||
+        blog.author.toLowerCase().includes(search.toLowerCase()) ||
+        blog.description.toLowerCase().includes(search.toLowerCase()) ||
+        blog.category.toLowerCase().includes(search.toLowerCase())
+    );
+    // console.log("filtered", filteredBlogs);
+      if (search === "") {
+        setBlogsData(blogs)
+      } else {
+        setBlogsData(filteredBlogs);
+      }
+  }
+ 
   useEffect(() => {
-    fetch("http://localhost:5000/blogs")
-      .then((result) => result.json())
-      .then((rowData) => setRowData(rowData))
-      .catch((err) => console.log(err.message));
-  }, []);
+    dispatch(getBlogs());
+  }, [dispatch]);
 
   return (
     <div style={{ width: "100%", height: "100%" }}>
@@ -159,13 +220,28 @@ const Blogs = () => {
           <div
             style={{
               display: "flex",
-              justifyContent: "end",
+              justifyContent: "space-between",
               alignItems: "center",
               height: "4vw",
               width: "80vw",
               margin: "0 auto",
             }}
           >
+            <div>
+              <TextField
+                id="table-search"
+                label="Search here for filter rows"
+                size="small"
+                variant="outlined"
+                // value={search}
+                onChange={searchHanlder}
+                // onChange={(e) => setSearch(e.target.value)}
+                sx={{ width: "30vw", marginRight: "10px" }}
+              />
+              <Button variant="contained" onClick={searchTableHandler}>
+                Search
+              </Button>
+            </div>
             <Button variant="contained" onClick={handleEditOpen}>
               Add Blog
             </Button>
@@ -181,7 +257,7 @@ const Blogs = () => {
           }}
         >
           <AgGridReact
-            rowData={rowData}
+            rowData={blogsData}
             columnDefs={columnDefs}
             defaultColDef={defaultColDef}
             animateRows={true}

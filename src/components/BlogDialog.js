@@ -8,8 +8,11 @@ import Textarea from '@mui/joy/Textarea';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { getBlogs } from '../store/blogs-slice';
+import { useDispatch } from "react-redux";
 
 const BlogDialog = ({ open, handleEditClose, formData, currentUserId }) => {
+    const dispatch = useDispatch()
 
     let { id, image, title, author, category, description } = formData;
 
@@ -26,7 +29,7 @@ const BlogDialog = ({ open, handleEditClose, formData, currentUserId }) => {
             .string()
             .required("Category is Required"),
 
-        img: yup
+        image: yup
             .string()
             .required("Image is Required"),
 
@@ -51,13 +54,13 @@ const BlogDialog = ({ open, handleEditClose, formData, currentUserId }) => {
             setValue('title', title, { shouldValidate: false }, { shouldTouch: true },)
             setValue('author', author, { shouldValidate: false }, { shouldTouch: true },)
             setValue('category', category, { shouldValidate: false }, { shouldTouch: true },)
-            setValue('img', image, { shouldValidate: false }, { shouldTouch: true },)
+            setValue('image', image, { shouldValidate: false }, { shouldTouch: true },)
             setValue('description', description, { shouldValidate: false }, { shouldTouch: true },)
         } else {
             setValue('title', '', { shouldValidate: false }, { shouldTouch: true },)
             setValue('author', '', { shouldValidate: false }, { shouldTouch: true },)
             setValue('category', '', { shouldValidate: false }, { shouldTouch: true },)
-            setValue('img', '', { shouldValidate: false }, { shouldTouch: true },)
+            setValue('image', '', { shouldValidate: false }, { shouldTouch: true },)
             setValue('description', '', { shouldValidate: false }, { shouldTouch: true },)
         }
     }, [author, category, description, id, title, image, setValue])
@@ -68,6 +71,7 @@ const BlogDialog = ({ open, handleEditClose, formData, currentUserId }) => {
 
         // when new blog added we also save which admin add this blog
         let newData = { ...data, userId: currentUserId }
+        console.log(newData);
 
         if (id) {
             fetch(`http://localhost:5000/blogs/${id}`, {
@@ -104,10 +108,12 @@ const BlogDialog = ({ open, handleEditClose, formData, currentUserId }) => {
         }
 
         handleEditClose();
+        dispatch(getBlogs());
+
         setValue('title', '', { shouldValidate: false }, { shouldTouch: true },)
         setValue('author', '', { shouldValidate: false }, { shouldTouch: true },)
         setValue('category', '', { shouldValidate: false }, { shouldTouch: true },)
-        setValue('img', '', { shouldValidate: false }, { shouldTouch: true },)
+        setValue('image', '', { shouldValidate: false }, { shouldTouch: true },)
         setValue('description', '', { shouldValidate: false }, { shouldTouch: true },)
 
     }
@@ -183,13 +189,13 @@ const BlogDialog = ({ open, handleEditClose, formData, currentUserId }) => {
                                     <TextField
                                         required
                                         fullWidth
-                                        {...register("img")}
-                                        error={errors.img ? true : false}
-                                        helperText={errors.img?.message}
-                                        id="img"
+                                        {...register("image")}
+                                        error={errors.image ? true : false}
+                                        helperText={errors.image?.message}
+                                        id="image"
                                         label="Image"
-                                        name="img"
-                                        autoComplete="img"
+                                        name="image"
+                                        autoComplete="image"
                                     />
                                 </Grid>
                                 <Grid item xs={12}>

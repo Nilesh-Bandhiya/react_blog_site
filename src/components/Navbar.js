@@ -14,6 +14,8 @@ import MuiAppBar from "@mui/material/AppBar";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link, useNavigate } from "react-router-dom";
 import cookie from "react-cookies";
+import {useDispatch} from "react-redux"
+import { getBlogs } from "../store/blogs-slice";
 
 const drawerWidth = 180;
 const pages = ["Home", "About"];
@@ -36,7 +38,8 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-const Navbar = ({ handleDrawerOpen, open }) => {
+const Navbar = ({ handleDrawerOpen, open, handleDrawerClose }) => {
+  const dispatch = useDispatch()
   const navigate = useNavigate();
 
   const currentUser = cookie.load("token")?.user;
@@ -51,8 +54,10 @@ const Navbar = ({ handleDrawerOpen, open }) => {
   const handleCloseUserMenu = (key) => {
     console.log(key);
     if (key === "Logout") {
+      handleDrawerClose()
       cookie.remove("token", { path: "/" });
-      navigate("/signin");
+      dispatch(getBlogs())
+      navigate("/");
     }
     setAnchorElUser(null);
   };

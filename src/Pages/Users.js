@@ -4,11 +4,13 @@ import { Button } from "@mui/material";
 import StatusDialog from "../components/StatusDialog";
 import RoleDialog from "../components/RoleDialog";
 import DeleteDialog from "../components/DeleteDialog";
+import { useSelector, useDispatch } from "react-redux";
+import { getUsers } from "../store/users-slice";
 
 const actionHandler = ({ data, handleRoleOpen, handleDeleteOpen }) => {
-  const viewUserHandler = () => {
-    console.log("viewUserHandler is runing on", data?.firstName);
-  };
+  // const viewUserHandler = () => {
+  //   console.log("viewUserHandler is runing on", data?.firstName);
+  // };
   const changeRoleHandler = () => {
     console.log("changeRoleHandler is runing on", data?.firstName);
     handleRoleOpen(data);
@@ -21,14 +23,14 @@ const actionHandler = ({ data, handleRoleOpen, handleDeleteOpen }) => {
 
   return (
     <>
-      <Button
+      {/* <Button
         variant="contained"
         size="small"
         sx={{ marginRight: "10px" }}
         onClick={viewUserHandler}
       >
         View
-      </Button>
+      </Button> */}
       <Button
         variant="contained"
         color="warning"
@@ -70,15 +72,14 @@ const statusHandler = ({ data, handleStatusOpen }) => {
   );
 };
 
-// const idHandler = ({ length }) => {
-//   console.log("le", length);
-//   for (let i = 0; i < length; i++) {
-//     return <>{i + 1}</>;
-//   }
-// };
+const idHandler = (e) => {
+  return<>{e?.node?.rowIndex + 1}</>
+};
 
 const Users = () => {
-  const [rowData, setRowData] = useState([]);
+  const dispatch = useDispatch();
+  const { users } = useSelector((state) => state?.users);
+
   const [statusOpen, setStatusOpen] = useState(false);
   const [statusData, setStatusData] = useState({});
   const [roleOpen, setRoleOpen] = useState(false);
@@ -114,23 +115,16 @@ const Users = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/users")
-      .then((result) => result.json())
-      .then((rowData) => setRowData(rowData))
-      .catch((err) => console.log(err.message));
-  }, []);
-  
+    dispatch(getUsers());
+  }, [dispatch]);
 
   const [columnDefs] = useState([
     {
-      field: "id",
+      field: "Id",
       minWidth: 50,
       width: 60,
       maxWidth: 70,
-      // cellRenderer: idHandler,
-      // cellRendererParams: {
-      //   length: rowData?.length,
-      // },
+      cellRenderer: idHandler,
     },
     { field: "firstName", minWidth: 100, width: 100, maxWidth: 150 },
     { field: "lastName", minWidth: 100, width: 100, maxWidth: 150 },
@@ -180,11 +174,11 @@ const Users = () => {
           margin: " 0 auto",
           boxSizing: "border-box",
           height: "80vh",
-          width: "84vw",
+          width: "85vw",
         }}
       >
         <AgGridReact
-          rowData={rowData}
+          rowData={users}
           columnDefs={columnDefs}
           defaultColDef={defaultColDef}
           animateRows={true}
