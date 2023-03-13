@@ -70,6 +70,8 @@ const Blogs = () => {
   let currentUserId = token?.userId;
   let isAdmin = token?.role === "admin";
 
+  const filterKeys = ["title", "author", "description", "category"];
+
   const { blogs } = useSelector((state) => state?.blog);
 
   const [blogsData, setBlogsData] = useState(blogs);
@@ -77,7 +79,7 @@ const Blogs = () => {
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [formData, setFormData] = useState({});
   const [data, setData] = useState({});
-  // const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     if (isAdmin) {
@@ -174,41 +176,14 @@ const Blogs = () => {
     []
   );
 
-  const searchTableHandler = () => {
-  
-    // let filteredBlogs = blogsData.filter(
-    //   (blog) =>
-    //     blog.title.toLowerCase().includes(search.toLowerCase()) ||
-    //     blog.author.toLowerCase().includes(search.toLowerCase()) ||
-    //     blog.description.toLowerCase().includes(search.toLowerCase()) ||
-    //     blog.category.toLowerCase().includes(search.toLowerCase())
-    // );
-    // console.log("filtered", filteredBlogs);
-    // if (search) {
-    //   setBlogsData(filteredBlogs);
-    // } else {
-    //   setBlogsData(blogs)
-    // }
+  const filterHandler = (data) => {
+    return blogsData.filter((blog) =>
+      filterKeys.some((key) =>
+        blog[key].toLowerCase().includes(search.toLowerCase())
+      )
+    );
   };
 
-  const searchHanlder = (e) => {
-    let search = e.target.value;
-    console.log(search);
-    let filteredBlogs = blogsData.filter(
-      (blog) =>
-        blog.title.toLowerCase().includes(search.toLowerCase()) ||
-        blog.author.toLowerCase().includes(search.toLowerCase()) ||
-        blog.description.toLowerCase().includes(search.toLowerCase()) ||
-        blog.category.toLowerCase().includes(search.toLowerCase())
-    );
-    // console.log("filtered", filteredBlogs);
-      if (search === "") {
-        setBlogsData(blogs)
-      } else {
-        setBlogsData(filteredBlogs);
-      }
-  }
- 
   useEffect(() => {
     dispatch(getBlogs());
   }, [dispatch]);
@@ -227,21 +202,14 @@ const Blogs = () => {
               margin: "0 auto",
             }}
           >
-            <div>
               <TextField
                 id="table-search"
-                label="Search here for filter rows"
+                label="Search here for filter table rows"
                 size="small"
                 variant="outlined"
-                // value={search}
-                onChange={searchHanlder}
-                // onChange={(e) => setSearch(e.target.value)}
-                sx={{ width: "30vw", marginRight: "10px" }}
+                onChange={(e) => setSearch(e.target.value)}
+                sx={{ width: "50vw" }}
               />
-              <Button variant="contained" onClick={searchTableHandler}>
-                Search
-              </Button>
-            </div>
             <Button variant="contained" onClick={handleEditOpen}>
               Add Blog
             </Button>
@@ -257,7 +225,7 @@ const Blogs = () => {
           }}
         >
           <AgGridReact
-            rowData={blogsData}
+            rowData={filterHandler(blogsData)}
             columnDefs={columnDefs}
             defaultColDef={defaultColDef}
             animateRows={true}

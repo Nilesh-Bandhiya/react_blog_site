@@ -8,7 +8,7 @@ const BlogDetail = () => {
   const params = useParams();
 
   let currentBlog = blogs.find((blog) => {
-    return blog.id == params.blogId;
+    return blog.id === parseInt(params.blogId);
   });
 
   return (
@@ -23,7 +23,7 @@ const BlogDetail = () => {
       }}
     >
       <h2>{params.blogId}</h2>
-      <img src={currentBlog.image} alt={currentBlog.title} />
+      <img src={currentBlog?.image} alt={currentBlog?.title} />
     </div>
   );
 };

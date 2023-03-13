@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { AgGridReact } from "ag-grid-react";
-import { Button } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import StatusDialog from "../components/StatusDialog";
 import RoleDialog from "../components/RoleDialog";
 import DeleteDialog from "../components/DeleteDialog";
@@ -73,12 +73,14 @@ const statusHandler = ({ data, handleStatusOpen }) => {
 };
 
 const idHandler = (e) => {
-  return<>{e?.node?.rowIndex + 1}</>
+  return <>{e?.node?.rowIndex + 1}</>;
 };
 
 const Users = () => {
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state?.users);
+
+  const filterKeys = ["firstName", "lastName", "email", "phoneNumber", "role"];
 
   const [statusOpen, setStatusOpen] = useState(false);
   const [statusData, setStatusData] = useState({});
@@ -86,6 +88,7 @@ const Users = () => {
   const [roleData, setRoleData] = useState({});
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [deleteData, setDeleteData] = useState({});
+  const [search, setSearch] = useState("");
 
   const handleStatusOpen = (data) => {
     setStatusData(data);
@@ -166,8 +169,35 @@ const Users = () => {
     []
   );
 
+  const filterHandler = (data) => {
+    return users.filter((blog) =>
+      filterKeys.some((key) =>
+        blog[key].toLowerCase().includes(search.toLowerCase())
+      )
+    );
+  };
+
   return (
     <div style={{ width: "100%", height: "100%" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-start",
+          alignItems: "center",
+          height: "4vw",
+          width: "85vw",
+          margin: "0 auto",
+        }}
+      >
+        <TextField
+          id="table-search"
+          label="Search here for filter table rows"
+          size="small"
+          variant="outlined"
+          onChange={(e) => setSearch(e.target.value)}
+          sx={{ width: "35vw" }}
+        />
+      </div>
       <div
         className="ag-theme-alpine"
         style={{
@@ -178,7 +208,7 @@ const Users = () => {
         }}
       >
         <AgGridReact
-          rowData={users}
+          rowData={filterHandler(users)}
           columnDefs={columnDefs}
           defaultColDef={defaultColDef}
           animateRows={true}
