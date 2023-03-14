@@ -43,6 +43,7 @@ const Navbar = ({ handleDrawerOpen, open, handleDrawerClose }) => {
   const navigate = useNavigate();
 
   const currentUser = cookie.load("token")?.user;
+  const currentUserId = cookie.load("token")?.userId;
   const isAdmin = cookie.load("token")?.role === "admin";
 
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -59,6 +60,11 @@ const Navbar = ({ handleDrawerOpen, open, handleDrawerClose }) => {
       dispatch(getBlogs())
       navigate("/");
     }
+
+    if (key === "Profile") {
+      navigate(`/users/${currentUserId}`);
+    }
+    
     setAnchorElUser(null);
   };
 

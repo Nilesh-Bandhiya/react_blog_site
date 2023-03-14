@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import cookie from 'react-cookies'
 
 export const ProtectedAdminRoute = (props) => {
@@ -20,8 +20,8 @@ export const ProtectedAdminRoute = (props) => {
 
   useEffect(() => {
     checkAdmin();
-    
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAdmin]);
 
   return (
@@ -34,7 +34,7 @@ export const ProtectedAdminRoute = (props) => {
 }
 
 
-export const ProtectedUserRoute = (props) => {
+export const ProtectedLoginRoute = (props) => {
   const navigate = useNavigate();
   const [isUser, setIsUser] = useState(false);
 
@@ -52,8 +52,8 @@ export const ProtectedUserRoute = (props) => {
 
   useEffect(() => {
     checkUser();
-    
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isUser]);
 
   return (
@@ -83,14 +83,45 @@ export const ProtectedLogoutRoute = (props) => {
 
   useEffect(() => {
     checkToken();
-    
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isUser]);
 
   return (
     <Fragment>
       {
         isUser ? props.children : null
+      }
+    </Fragment>
+  );
+}
+
+export const ProtectedUserRoute = (props) => {
+  const params = useParams();
+  const navigate = useNavigate();
+  const [isCurrentUser, setIsCurrentUser] = useState(false);
+
+  const checkToken = () => {
+
+    let token = cookie.load("token")
+
+    if (token && token.userId !== parseInt(params.userId) ) {
+      setIsCurrentUser(false);
+      return navigate('/');
+    }
+    setIsCurrentUser(true);
+  }
+
+  useEffect(() => {
+    checkToken();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isCurrentUser]);
+
+  return (
+    <Fragment>
+      {
+        isCurrentUser ? props.children : null
       }
     </Fragment>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import "./BlogDetail.css"
 
 const BlogDetail = () => {
   const blogs = useSelector((state) => state.blog?.blogs);
@@ -12,18 +13,20 @@ const BlogDetail = () => {
   });
 
   return (
-    <div
-      className="ag-theme-alpine"
-      style={{
-        backgroundColor: "aqua",
-        margin: " 0 auto",
-        boxSizing: "border-box",
-        height: "80vh",
-        width: "85vw",
-      }}
-    >
-      <h2>{params.blogId}</h2>
-      <img src={currentBlog?.image} alt={currentBlog?.title} />
+    <div className="main-container">
+      <section>
+        <div className="blog-detail">
+          <div className="blog">
+            <img className="picture" src={currentBlog.image} alt={currentBlog.title} />
+            <div className="main-content">
+              <h2 className="title" >{currentBlog.title}</h2>
+              <h2 className="author">{currentBlog.author}</h2>
+              <h3 className="category">{currentBlog.category}</h3>
+            </div>
+          </div>
+          <p className="description">{currentBlog.description}</p>
+        </div>
+      </section>
     </div>
   );
 };
