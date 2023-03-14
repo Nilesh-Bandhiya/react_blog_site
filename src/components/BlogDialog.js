@@ -85,7 +85,6 @@ const BlogDialog = ({ open, handleEditClose, formData, currentUserId }) => {
                 })
                     .then((response) => response.json())
                     .then((data) => {
-                        console.log("Success", data);
                         toast.success("Blog Updated Successfully")
                     })
                     .catch((error) => {
