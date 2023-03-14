@@ -7,7 +7,7 @@ export const getBlogs = createAsyncThunk(
         const data = await res.json()
         return data;
     })
-
+        
 const initialState = {
     blogs: [],
     loading: false,

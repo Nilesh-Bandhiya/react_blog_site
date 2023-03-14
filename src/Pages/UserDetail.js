@@ -208,7 +208,6 @@ const UserDetail = () => {
                                 >
                                     Update
                                 </Button>
-
                             </Grid>
                         </Grid>
                     </Box>

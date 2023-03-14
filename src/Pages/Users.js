@@ -156,9 +156,9 @@ const Users = () => {
   );
 
   const filterHandler = (data) => {
-    return users.filter((blog) =>
+    return data.filter((user) =>
       filterKeys.some((key) =>
-        blog[key].toLowerCase().includes(search.toLowerCase())
+        user[key].toLowerCase().includes(search.toLowerCase())
       )
     );
   };

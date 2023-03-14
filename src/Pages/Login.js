@@ -17,7 +17,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
 import { toast } from 'react-toastify';
-import { useSelector } from "react-redux";
 
 const Copyright = (props) => {
   return (
@@ -82,13 +81,11 @@ const Login = () => {
         if (user.active) {
           toast.success("Loggedin successfully")
           let token = { user: user.firstName, email: user.email, role: user.role, userId: user.id }
-          console.log(token);
           localStorage.setItem("token", JSON.stringify(token))
           navigate("/")
         } else {
           toast.error("Sorry You can't Loggedin")
         }
-
       }
     } else {
       setError("email", { type: "custom", message: "User is not Valid" }, { shouldFocus: true });

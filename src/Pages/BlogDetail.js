@@ -17,7 +17,7 @@ const BlogDetail = () => {
       <section>
         <div className="blog-detail">
           <div className="blog">
-            <img className="picture" src={currentBlog.image} alt={currentBlog.title} />
+            <img className="blog-picture" src={currentBlog.image} alt={currentBlog.title} />
             <div className="main-content">
               <h2 className="title" >Title : {currentBlog.title}</h2>
               <h2 className="author">Author : {currentBlog.author}</h2>

@@ -63,13 +63,13 @@ const idHandler = (e) => {
 const Blogs = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  let token = localStorage.getItem("token");
+  let token = JSON.parse(localStorage.getItem("token"));
   let currentUserId = token?.userId;
   let isAdmin = token?.role === "admin";
 
   const filterKeys = ["title", "author", "description", "category"];
 
-  const { blogs } = useSelector((state) => state?.blog);
+  const blogs = useSelector((state) => state?.blog?.blogs);
 
   const [blogsData, setBlogsData] = useState(blogs);
   const [editOpen, setEditOpen] = useState(false);
@@ -174,7 +174,7 @@ const Blogs = () => {
   );
 
   const filterHandler = (data) => {
-    return blogsData.filter((blog) =>
+    return data?.filter((blog) =>
       filterKeys.some((key) =>
         blog[key].toLowerCase().includes(search.toLowerCase())
       )
