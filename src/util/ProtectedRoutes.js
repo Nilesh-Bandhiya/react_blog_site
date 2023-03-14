@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import cookie from 'react-cookies'
 
 export const ProtectedAdminRoute = (props) => {
   const navigate = useNavigate();
@@ -9,7 +8,7 @@ export const ProtectedAdminRoute = (props) => {
 
   const checkAdmin = () => {
 
-    let token = cookie.load("token")
+    let token = localStorage.getItem("token")
 
     if (!token || token === 'undefined' || token?.role !== "admin") {
       setIsAdmin(false);
@@ -41,7 +40,7 @@ export const ProtectedLoginRoute = (props) => {
 
   const checkUser = () => {
 
-    let token = cookie.load("token")
+    let token = localStorage.getItem("token")
 
     if (!token || token === 'undefined') {
       setIsUser(false);
@@ -72,7 +71,7 @@ export const ProtectedLogoutRoute = (props) => {
 
   const checkToken = () => {
 
-    let token = cookie.load("token")
+    let token = localStorage.getItem("token")
 
     if (token) {
       setIsUser(false);
@@ -103,7 +102,7 @@ export const ProtectedUserRoute = (props) => {
 
   const checkToken = () => {
 
-    let token = cookie.load("token")
+    let token = localStorage.getItem("token")
 
     if (token && token.userId !== parseInt(params.userId) ) {
       setIsCurrentUser(false);
