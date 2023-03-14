@@ -17,6 +17,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import cookie from 'react-cookies'
 import { Link } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 const Copyright = (props) => {
   return (
@@ -44,7 +45,9 @@ const Login = () => {
   useEffect(() => {
     fetch("http://localhost:5000/users")
       .then((result) => result.json())
-      .then((data) => setUsers(data));
+      .then((data) => setUsers(data)).catch((error) => {
+        toast.error(error.message)
+      });
   }, []);
 
   const validation = yup.object().shape({
@@ -69,19 +72,24 @@ const Login = () => {
   });
 
   const loginHandler = (data) => {
-    console.log("data", data);
 
     const user = users.find((user) => user.email === data.email);
-    console.log("role", user.role);
 
     if (user) {
       if (data.password !== user.password) {
         setError("password", { type: "custom", message: "Invalid Password or UserName" }, { shouldFocus: true });
       } else {
-        console.log("successfully submited");
-        let token = {user:user.firstName , email: user.email, role: user.role, userId: user.id }
-        cookie.save('token', token, { path: '/' })
-        navigate("/") 
+
+        if (user.active) {
+          console.log("user is acive");
+          toast.success("Loggedin successfully")
+          let token = { user: user.firstName, email: user.email, role: user.role, userId: user.id }
+          cookie.save('token', token, { path: '/' })
+          navigate("/")
+        } else {
+          toast.error("Sorry You can't Loggedin")
+        }
+
       }
     } else {
       setError("email", { type: "custom", message: "User is not Valid" }, { shouldFocus: true });
@@ -95,7 +103,7 @@ const Login = () => {
       <Paper
         elevation={5}
         sx={{
-          marginTop: 8,
+          marginTop: 1,
           padding: 2,
         }}
       >
@@ -165,7 +173,7 @@ const Login = () => {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 6, mb: 3 }} />
+        <Copyright sx={{ mt: 3, mb: 3 }} />
       </Paper>
     </Container>
   );

@@ -10,11 +10,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { getBlogs } from '../store/blogs-slice';
 import { useDispatch } from "react-redux";
+import { toast } from 'react-toastify';
 
 const BlogDialog = ({ open, handleEditClose, formData, currentUserId }) => {
     const dispatch = useDispatch()
 
-    let { id, image, title, author, category, description } = formData;
+    let { id, userId, image, title, author, category, description } = formData;
+
 
     const validation = yup.object().shape({
         title: yup
@@ -66,31 +68,34 @@ const BlogDialog = ({ open, handleEditClose, formData, currentUserId }) => {
     }, [author, category, description, id, title, image, setValue])
 
 
-
     const addBlogHandler = (data) => {
 
         // when new blog added we also save which admin add this blog
         let newData = { ...data, userId: currentUserId }
-        console.log(newData);
 
         if (id) {
-            fetch(`http://localhost:5000/blogs/${id}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    console.log("Success:", data);
+            if (userId === currentUserId) {
+                fetch(`http://localhost:5000/blogs/${id}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
                 })
-                .catch((error) => {
-                    console.error("Error:", error);
-                });
+                    .then((response) => response.json())
+                    .then((data) => {
+                        toast.success("Blog Updated Successfully")
+                    })
+                    .catch((error) => {
+                        console.error("Error:", error);
+                        toast.error(error.message)
+                    });
+  
+            } else {
+                toast.error("You can not Update this Blog")
+            }
 
         } else {
-
             fetch("http://localhost:5000/blogs", {
                 method: "POST",
                 headers: {
@@ -100,10 +105,11 @@ const BlogDialog = ({ open, handleEditClose, formData, currentUserId }) => {
             })
                 .then((response) => response.json())
                 .then((data) => {
-                    console.log("Success:", data);
+                    toast.success("Blog Added Successfully")
                 })
                 .catch((error) => {
                     console.error("Error:", error);
+                    toast.error(error.message)
                 });
         }
 

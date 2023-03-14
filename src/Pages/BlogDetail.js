@@ -19,9 +19,9 @@ const BlogDetail = () => {
           <div className="blog">
             <img className="picture" src={currentBlog.image} alt={currentBlog.title} />
             <div className="main-content">
-              <h2 className="title" >{currentBlog.title}</h2>
-              <h2 className="author">{currentBlog.author}</h2>
-              <h3 className="category">{currentBlog.category}</h3>
+              <h2 className="title" >Title : {currentBlog.title}</h2>
+              <h2 className="author">Author : {currentBlog.author}</h2>
+              <h3 className="category">Category : {currentBlog.category}</h3>
             </div>
           </div>
           <p className="description">{currentBlog.description}</p>

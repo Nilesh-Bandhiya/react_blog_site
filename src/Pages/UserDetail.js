@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IconButton } from '@mui/material';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { getUsers } from '../store/users-slice';
+import { toast } from 'react-toastify';
 
 const UserDetail = () => {
 
@@ -49,7 +50,6 @@ const UserDetail = () => {
             .string()
             .required("Email is Required")
             .email("Plaese Enter Valid Email"),
-
     });
 
     const {
@@ -62,7 +62,6 @@ const UserDetail = () => {
     });
 
     const updateUserHandler = (data) => {
-        console.log("data", data);
 
         let newData = { ...currentUserDetail, firstName: data.firstName, lastName: data.lastName, phoneNumber: data.phoneNumber, email: data.email }
 
@@ -75,14 +74,15 @@ const UserDetail = () => {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log("Success:", data);
+                toast.success("Profile Updated Successfully")
                 navigate("/")
             })
             .catch((error) => {
                 console.error("Error:", error);
+                toast.error(error.message)
             });
 
-            dispatch(getUsers())
+        dispatch(getUsers())
     }
 
 
@@ -190,34 +190,6 @@ const UserDetail = () => {
                                     autoComplete="email"
                                 />
                             </Grid>
-                            {/* <Grid item xs={12} sm={6}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    {...register("password")}
-                                    error={errors.password ? true : false}
-                                    helperText={errors.password?.message}
-                                    name="password"
-                                    label="Password"
-                                    type="password"
-                                    id="password"
-                                    autoComplete="new-password"
-                                />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    {...register("cpassword")}
-                                    error={errors.cpassword ? true : false}
-                                    helperText={errors.cpassword?.message}
-                                    name="cpassword"
-                                    label="Confirm Password"
-                                    type="password"
-                                    id="cpassword"
-                                    autoComplete="confirm-password"
-                                />
-                            </Grid> */}
                             <Grid item xs={12} sx={{ display: "flex", justifyContent: "end" }} >
                                 <Button
                                     type="button"

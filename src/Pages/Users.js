@@ -8,29 +8,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { getUsers } from "../store/users-slice";
 
 const actionHandler = ({ data, handleRoleOpen, handleDeleteOpen }) => {
-  // const viewUserHandler = () => {
-  //   console.log("viewUserHandler is runing on", data?.firstName);
-  // };
   const changeRoleHandler = () => {
-    console.log("changeRoleHandler is runing on", data?.firstName);
     handleRoleOpen(data);
   };
 
   const deleteUserHandler = () => {
-    console.log("deleteUserHandler is runing on", data?.firstName);
     handleDeleteOpen(data);
   };
 
   return (
     <>
-      {/* <Button
-        variant="contained"
-        size="small"
-        sx={{ marginRight: "10px" }}
-        onClick={viewUserHandler}
-      >
-        View
-      </Button> */}
       <Button
         variant="contained"
         color="warning"
@@ -54,7 +41,6 @@ const actionHandler = ({ data, handleRoleOpen, handleDeleteOpen }) => {
 
 const statusHandler = ({ data, handleStatusOpen }) => {
   const changeStatusHandler = () => {
-    console.log("changeStatusHandler runing on", data?.active);
     handleStatusOpen(data);
   };
 
@@ -203,7 +189,7 @@ const Users = () => {
         style={{
           margin: " 0 auto",
           boxSizing: "border-box",
-          height: "80vh",
+          height: "72vh",
           width: "85vw",
         }}
       >

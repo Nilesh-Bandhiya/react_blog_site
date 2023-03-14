@@ -5,6 +5,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import {useDispatch} from "react-redux"
 import { getUsers } from "../store/users-slice";
+import { toast } from 'react-toastify';
 
 const DeleteDialog = ({ open, handleDeleteClose, data }) => {
   const dispatch = useDispatch()
@@ -16,10 +17,11 @@ const DeleteDialog = ({ open, handleDeleteClose, data }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data);
+        toast.success(`${firstName} Deleted Successfully`)
       })
       .catch((error) => {
         console.error("Error:", error);
+        toast.error(error.message)
       });
 
     handleDeleteClose();

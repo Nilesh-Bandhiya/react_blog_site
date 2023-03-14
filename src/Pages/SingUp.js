@@ -14,6 +14,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 function Copyright(props) {
   return (
@@ -81,7 +82,6 @@ const SignUp = () => {
   });
 
   const signUpHandler = (data) => {
-    console.log("data", data);
     if(data.password !== data.cpassword){
       setError("cpassword", { type: "custom", message: "Confirm Password Did not match previous Password" }, { shouldFocus: true });
       return
@@ -98,11 +98,12 @@ const SignUp = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data);
+        toast.success("User Registered Successfully")
         navigate("/signin")
       })
       .catch((error) => {
         console.error("Error:", error);
+        toast.error(error.message)
       });
 
 
@@ -114,7 +115,7 @@ const SignUp = () => {
       <Paper
         elevation={5}
         sx={{
-          marginTop: `${Object.keys(errors).length === 0 ? "24px" : "0px"}`,
+          // marginTop: `${Object.keys(errors).length === 0 ? "24px" : "0px"}`,
           padding: 2,
         }}
       >
@@ -122,7 +123,7 @@ const SignUp = () => {
           sx={{
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
+            alignItems: "center"
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
@@ -134,8 +135,8 @@ const SignUp = () => {
           <Box
             component="form"
             noValidate
+            sx={{mt: 2}}
             onSubmit={handleSubmit(signUpHandler)}
-            sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
@@ -225,7 +226,7 @@ const SignUp = () => {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 2, mb: 2 }}
             >
               Sign Up
             </Button>
@@ -238,7 +239,7 @@ const SignUp = () => {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 3, mb: 1 }} />
+        <Copyright sx={{ mt: 2, mb: 1 }} />
       </Paper>
     </Container>
   );

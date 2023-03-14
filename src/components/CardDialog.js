@@ -3,24 +3,32 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
-import {useDispatch} from "react-redux"
+import { useDispatch } from "react-redux"
 import { getBlogs } from "../store/blogs-slice";
+import { toast } from 'react-toastify';
 
-const CardDialog = ({ open, handleDeleteClose, data }) => {
+const CardDialog = ({ open, handleDeleteClose, data, currentUserId }) => {
   const dispatch = useDispatch()
-  let { id, title } = data;
+  let { id, title, userId } = data;
 
   const handleDeleteBlog = () => {
-    fetch(`http://localhost:5000/blogs/${id}`, {
-      method: "DELETE",
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
+
+    if (userId === currentUserId) {
+      fetch(`http://localhost:5000/blogs/${id}`, {
+        method: "DELETE",
       })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+        .then((response) => response.json())
+        .then((data) => {
+          toast.success("Blog Deleted Successfully")
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          toast.success(error.message)
+        });
+
+    } else {
+      toast.error("You can not Delete this Blog")
+    }
 
     handleDeleteClose();
     dispatch(getBlogs())
@@ -46,7 +54,7 @@ const CardDialog = ({ open, handleDeleteClose, data }) => {
           >
             Cancel
           </Button>
-          <Button onClick={handleDeleteBlog} variant="contained" color="error"  autoFocus>
+          <Button onClick={handleDeleteBlog} variant="contained" color="error" autoFocus>
             Confirm
           </Button>
         </DialogActions>

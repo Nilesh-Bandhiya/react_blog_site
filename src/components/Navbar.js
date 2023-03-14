@@ -16,6 +16,7 @@ import { Link, useNavigate } from "react-router-dom";
 import cookie from "react-cookies";
 import {useDispatch} from "react-redux"
 import { getBlogs } from "../store/blogs-slice";
+import { toast } from 'react-toastify';
 
 const drawerWidth = 180;
 const pages = ["Home", "About"];
@@ -53,9 +54,9 @@ const Navbar = ({ handleDrawerOpen, open, handleDrawerClose }) => {
   };
 
   const handleCloseUserMenu = (key) => {
-    console.log(key);
     if (key === "Logout") {
       handleDrawerClose()
+      toast.success("User Loggedout")
       cookie.remove("token", { path: "/" });
       dispatch(getBlogs())
       navigate("/");
@@ -64,7 +65,7 @@ const Navbar = ({ handleDrawerOpen, open, handleDrawerClose }) => {
     if (key === "Profile") {
       navigate(`/users/${currentUserId}`);
     }
-    
+
     setAnchorElUser(null);
   };
 

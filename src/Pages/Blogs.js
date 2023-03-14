@@ -13,12 +13,10 @@ import { getBlogs } from "../store/blogs-slice";
 
 const actionHandler = ({ handleDeleteOpen, handleEditOpen, data }) => {
   const editBlogHandler = () => {
-    console.log("viewUserHandler is runing on", data?.title);
     handleEditOpen(data);
   };
 
   const deleteBlogHandler = () => {
-    console.log("deleteUserHandler is runing on", data?.title);
     handleDeleteOpen(data);
   };
 
@@ -191,36 +189,35 @@ const Blogs = () => {
   return (
     <div style={{ width: "100%", height: "100%" }}>
       <div>
-        {isAdmin && (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              height: "4vw",
-              width: "80vw",
-              margin: "0 auto",
-            }}
-          >
-              <TextField
-                id="table-search"
-                label="Search here for filter table rows"
-                size="small"
-                variant="outlined"
-                onChange={(e) => setSearch(e.target.value)}
-                sx={{ width: "50vw" }}
-              />
-            <Button variant="contained" onClick={handleEditOpen}>
-              Add Blog
-            </Button>
-          </div>
-        )}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            height: "4vw",
+            width: "80vw",
+            margin: "0 auto",
+          }}
+        >
+          <TextField
+            id="table-search"
+            label="Search here for filter table rows"
+            size="small"
+            variant="outlined"
+            onChange={(e) => setSearch(e.target.value)}
+            sx={{ width: "50vw" }}
+          />
+          {isAdmin && (<Button variant="contained" onClick={handleEditOpen}>
+            Add Blog
+          </Button>)}
+        </div>
+
         <div
           className="ag-theme-alpine"
           style={{
             margin: "0 auto",
             boxSizing: "border-box",
-            height: "75vh",
+            height: "72vh",
             width: "80vw",
           }}
         >
@@ -243,6 +240,7 @@ const Blogs = () => {
         open={deleteOpen}
         data={data}
         handleDeleteClose={handleDeleteClose}
+        currentUserId={currentUserId}
       />
     </div>
   );

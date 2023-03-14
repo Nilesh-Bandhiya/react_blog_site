@@ -51,7 +51,7 @@
       "email": "shyam@gmail.com",
       "password": "Shyam@321",
       "cpassword": "Shyam@321",
-      "role": "admin",
+      "role": "user",
       "active": true,
       "id": 5
     },
@@ -74,7 +74,7 @@
       "password": "Renuka@321",
       "cpassword": "Renuka@321",
       "role": "user",
-      "active": false,
+      "active": true,
       "id": 7
     },
     {
@@ -107,19 +107,30 @@
       "password": "Ajay@321",
       "cpassword": "Ajay@321",
       "role": "user",
-      "active": false,
+      "active": true,
       "id": 10
+    },
+    {
+      "firstName": "ghghg",
+      "lastName": "ghg",
+      "phoneNumber": "7767866546",
+      "email": "ff@ghg.com",
+      "password": "1234567",
+      "cpassword": "1234567",
+      "role": "user",
+      "id": 11,
+      "active": true
     }
   ],
   "blogs": [
     {
-      "id": 1,
-      "userId": 1,
       "title": "Javascript",
+      "author": "Nishant Singh",
+      "category": "CS-IT",
+      "userId": 1,
       "image": "https://miro.medium.com/v2/resize:fill:200:134/1*liYEIkafclN-rwdAqaZJ4Q.png",
       "description": "JavaScript is a high-level, often just-in-time compiled language that conforms to the ECMAScript standard.[10] It has dynamic typing, prototype-based object-orientation, and first-class functions. It is multi-paradigm, supporting event-driven, functional, and imperative programming styles. It has application programming interfaces (APIs) for working with text, dates, regular expressions, standard data structures, and the Document Object Model (DOM).The ECMAScript standard does not include any input/output (I/O), such as networking, storage, or graphics facilities. In practice, the web browser or other runtime system provides JavaScript APIs for I/O.JavaScript engines were originally used only in web browsers, but are now core components of some servers and a variety of applications. The most popular runtime system for this usage is Node.js. Although Java and JavaScript are similar in name, syntax, and respective standard libraries, the two languages are distinct and differ greatly in design.",
-      "author": "Nishant Singh",
-      "category": "CS-IT"
+      "id": 1
     },
     {
       "id": 2,
@@ -149,13 +160,13 @@
       "category": "CS-IT"
     },
     {
-      "id": 5,
-      "userId": 2,
       "title": "Dan Flying Solo",
+      "author": "Pico Iyer",
+      "category": "Travel",
+      "userId": 2,
       "image": "https://miro.medium.com/v2/resize:fill:200:134/1*F6ZwcDCqfcIakTpnEwuSmw.jpeg",
       "description": "Dan is one of the best travel bloggers in the world, hands down. Born and raised in the UK, he is an incredible writer and photographer whose work has been featured in many major publications, including Travel + Leisure and National Geographic. I would be remiss if I covered the best blogs on travel without mentioning him.I had the privilege and pleasure of meeting Dan on a press trip in Aruba back in 2018, and we have been friends ever since. Dan covers a variety of exotic destinations on his travel blog, Dan Flying Solo, with a focus on lesser-known places. In addition to his blog, Dan is a Lonely Planet Ambassador and contributor to the companys guidebooks.",
-      "author": "Pico Iyer",
-      "category": "Travel"
+      "id": 5
     },
     {
       "id": 6,
@@ -176,13 +187,13 @@
       "category": "Travel"
     },
     {
-      "id": 8,
-      "userId": 1,
       "title": " Cookie and Kate ",
+      "author": "Nandita Iyer",
+      "category": "Food",
       "image": "https://miro.medium.com/v2/resize:fill:200:134/1*4-WRim5zyfn8nGYjtuUEdQ.jpeg",
       "description": "Cookie and Kate is all about celebrating good food. Kate is Kathryne Taylor. Cookie is her dog which Kate describes as a “mystery mutt,” or as a DNA test found, half schipperke and half dachshund/Australian koolie mix.Kate is a photographer and cook from Oklahoma. She created the blog in 2010 and now works on it full-time.Like many of the other top food blogs featured here, Cookie and Kate features vegetarian and whole food recipes.The site makes it easy to search for recipes. You can look for recipes by Course, Cuisine, Diet, Everyday, Ingredient, or Season.",
-      "author": "Nandita Iyer",
-      "category": "Food"
+      "id": 8,
+      "userId": 2
     },
     {
       "id": 9,
