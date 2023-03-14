@@ -13,7 +13,6 @@ import { styled } from "@mui/material/styles";
 import MuiAppBar from "@mui/material/AppBar";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link, useNavigate } from "react-router-dom";
-import cookie from "react-cookies";
 import {useDispatch} from "react-redux"
 import { getBlogs } from "../store/blogs-slice";
 import { toast } from 'react-toastify';
@@ -43,9 +42,11 @@ const Navbar = ({ handleDrawerOpen, open, handleDrawerClose }) => {
   const dispatch = useDispatch()
   const navigate = useNavigate();
 
-  const currentUser = cookie.load("token")?.user;
-  const currentUserId = cookie.load("token")?.userId;
-  const isAdmin = cookie.load("token")?.role === "admin";
+  const token = JSON.parse(localStorage.getItem("token")) ;
+  const currentUser = token?.user
+  const currentUserId = token?.userId
+  const isAdmin = token.role === "admin"
+
 
   const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -57,7 +58,7 @@ const Navbar = ({ handleDrawerOpen, open, handleDrawerClose }) => {
     if (key === "Logout") {
       handleDrawerClose()
       toast.success("User Loggedout")
-      cookie.remove("token", { path: "/" });
+      localStorage.removeItem("token")
       dispatch(getBlogs())
       navigate("/");
     }

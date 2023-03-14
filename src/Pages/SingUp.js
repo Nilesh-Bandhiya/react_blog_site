@@ -15,6 +15,7 @@ import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { toast } from 'react-toastify';
+import { useSelector } from "react-redux";
 
 function Copyright(props) {
   return (
@@ -36,6 +37,7 @@ function Copyright(props) {
 
 const SignUp = () => {
   const navigate =  useNavigate()
+  const users = useSelector((state) => state.users.users) 
 
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
@@ -82,6 +84,13 @@ const SignUp = () => {
   });
 
   const signUpHandler = (data) => {
+
+    const user = users?.find((user) => user.email === data.email);
+    if(user){
+      setError("email", { type: "custom", message: "Email is already exist try with another email" }, { shouldFocus: true });
+      return
+    }
+
     if(data.password !== data.cpassword){
       setError("cpassword", { type: "custom", message: "Confirm Password Did not match previous Password" }, { shouldFocus: true });
       return

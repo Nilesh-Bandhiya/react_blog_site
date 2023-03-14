@@ -15,9 +15,9 @@ import Paper from "@mui/material/Paper";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import cookie from 'react-cookies'
 import { Link } from "react-router-dom";
 import { toast } from 'react-toastify';
+import { useSelector } from "react-redux";
 
 const Copyright = (props) => {
   return (
@@ -39,7 +39,7 @@ const Copyright = (props) => {
 
 const Login = () => {
   const navigate = useNavigate()
-
+  // const users = useSelector((state) => state.users.users) 
   const [users, setUsers] = useState([])
 
   useEffect(() => {
@@ -49,7 +49,6 @@ const Login = () => {
         toast.error(error.message)
       });
   }, []);
-
   const validation = yup.object().shape({
     email: yup
       .string()
@@ -73,7 +72,7 @@ const Login = () => {
 
   const loginHandler = (data) => {
 
-    const user = users.find((user) => user.email === data.email);
+    const user = users?.find((user) => user.email === data.email);
 
     if (user) {
       if (data.password !== user.password) {
@@ -81,10 +80,10 @@ const Login = () => {
       } else {
 
         if (user.active) {
-          console.log("user is acive");
           toast.success("Loggedin successfully")
           let token = { user: user.firstName, email: user.email, role: user.role, userId: user.id }
-          cookie.save('token', token, { path: '/' })
+          console.log(token);
+          localStorage.setItem("token", JSON.stringify(token))
           navigate("/")
         } else {
           toast.error("Sorry You can't Loggedin")

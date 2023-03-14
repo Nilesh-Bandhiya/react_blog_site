@@ -7,7 +7,6 @@ import { Button, TextField } from "@mui/material";
 import BlogDialog from "../components/BlogDialog";
 import CardDialog from "../components/CardDialog";
 import { Link, useLocation } from "react-router-dom";
-import cookie from "react-cookies";
 import { useSelector, useDispatch } from "react-redux";
 import { getBlogs } from "../store/blogs-slice";
 
@@ -64,7 +63,7 @@ const idHandler = (e) => {
 const Blogs = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  let token = cookie.load("token");
+  let token = localStorage.getItem("token");
   let currentUserId = token?.userId;
   let isAdmin = token?.role === "admin";
 

@@ -109,17 +109,6 @@
       "role": "user",
       "active": true,
       "id": 10
-    },
-    {
-      "firstName": "ghghg",
-      "lastName": "ghg",
-      "phoneNumber": "7767866546",
-      "email": "ff@ghg.com",
-      "password": "1234567",
-      "cpassword": "1234567",
-      "role": "user",
-      "id": 11,
-      "active": true
     }
   ],
   "blogs": [
