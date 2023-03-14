@@ -3,12 +3,12 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
-import {useDispatch} from "react-redux"
+import { useDispatch } from "react-redux";
 import { getUsers } from "../store/users-slice";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const DeleteDialog = ({ open, handleDeleteClose, data }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   let { id, firstName } = data;
 
   const handleDeleteBlog = () => {
@@ -17,15 +17,15 @@ const DeleteDialog = ({ open, handleDeleteClose, data }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        toast.success(`${firstName} Deleted Successfully`)
+        dispatch(getUsers());
+        toast.success(`${firstName} Deleted Successfully`);
       })
       .catch((error) => {
         console.error("Error:", error);
-        toast.error(error.message)
+        toast.error(error.message);
       });
 
     handleDeleteClose();
-    dispatch(getUsers())
   };
 
   return (
@@ -48,7 +48,12 @@ const DeleteDialog = ({ open, handleDeleteClose, data }) => {
           >
             Cancel
           </Button>
-          <Button onClick={handleDeleteBlog} variant="contained" color="error"  autoFocus>
+          <Button
+            onClick={handleDeleteBlog}
+            variant="contained"
+            color="error"
+            autoFocus
+          >
             Confirm
           </Button>
         </DialogActions>

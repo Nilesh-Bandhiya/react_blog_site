@@ -26,14 +26,15 @@ const StatusDialog = ({ open, handleStatusClose, data }) => {
     })
       .then((response) => response.json())
       .then((data) => {
+        dispatch(getUsers())
         toast.success(`Now ${firstName} is ${!active ? "Active" : "Inactive"}`)
       })
       .catch((error) => {
         console.error("Error:", error);
         toast.error(error.message)
+        dispatch(getUsers())
       });
     handleStatusClose();
-    dispatch(getUsers())
   };
 
   return (

@@ -74,17 +74,16 @@ const UserDetail = () => {
         })
             .then((response) => response.json())
             .then((data) => {
+                dispatch(getUsers())
                 toast.success("Profile Updated Successfully")
                 navigate("/")
             })
             .catch((error) => {
                 console.error("Error:", error);
                 toast.error(error.message)
+                dispatch(getUsers())
             });
-
-        dispatch(getUsers())
     }
-
 
     useEffect(() => {
         setValue('firstName', currentUserDetail?.firstName, { shouldValidate: false }, { shouldTouch: true },)

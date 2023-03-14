@@ -3,19 +3,18 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
-import {useDispatch} from "react-redux"
+import { useDispatch } from "react-redux";
 import { getUsers } from "../store/users-slice";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const RoleDialog = ({ open, handleRoleClose, data }) => {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   let { id, firstName, role } = data;
 
   const roleChangeHandler = () => {
     // first we need to change the role of user then we send put request to backend
-    let upadtedData = { ...data, role: role === "user" ? "admin" : "user"  };
+    let upadtedData = { ...data, role: role === "user" ? "admin" : "user" };
 
     fetch(`http://localhost:5000/users/${id}`, {
       method: "PUT",
@@ -26,14 +25,17 @@ const RoleDialog = ({ open, handleRoleClose, data }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        toast.success(`Now ${firstName} is ${role === "user" ? "admin" : "user"}`)
+        dispatch(getUsers());
+        toast.success(
+          `Now ${firstName} is ${role === "user" ? "admin" : "user"}`
+        );
       })
       .catch((error) => {
         console.error("Error:", error);
-        toast.error(error.message)
+        toast.error(error.message);
+        dispatch(getUsers());
       });
     handleRoleClose();
-    dispatch(getUsers())
   };
 
   return (
@@ -45,7 +47,9 @@ const RoleDialog = ({ open, handleRoleClose, data }) => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {`Are you sure to change ${firstName}'s role ${role} to ${role === "user" ? "admin" : "user"}`}
+          {`Are you sure to change ${firstName}'s role ${role} to ${
+            role === "user" ? "admin" : "user"
+          }`}
         </DialogTitle>
         <DialogActions>
           <Button
