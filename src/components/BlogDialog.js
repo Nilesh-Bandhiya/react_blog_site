@@ -72,6 +72,7 @@ const BlogDialog = ({ open, handleEditClose, formData, currentUserId }) => {
 
         // when new blog added we also save which admin add this blog
         let newData = { ...data, userId: currentUserId }
+        let newDataUpdate = {...data, userId: userId }
 
         if (id) {
             if (userId === currentUserId) {
@@ -80,7 +81,7 @@ const BlogDialog = ({ open, handleEditClose, formData, currentUserId }) => {
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify(data),
+                    body: JSON.stringify(newDataUpdate),
                 })
                     .then((response) => response.json())
                     .then((data) => {

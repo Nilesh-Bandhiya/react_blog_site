@@ -194,13 +194,13 @@
       "category": "Food"
     },
     {
-      "id": 10,
-      "userId": 1,
-      "title": " Smitten Kitchen ",
-      "description": "Smitten Kitchen features delectable images of meals demanding to be eaten. Therefore should be no surprise that Smitten Kitchen has found great popularity with serious food fans.Smitten Kitchen summarizes itself as being “Fearless cooking from a tiny kitchen in New York City.” It was created by Deb Perelman who obsessed with the intricacies of food and cooking. As she says on her About page, she loves being able to wake and cook whatever she feels like that day.The recipes are the heart of this site. There is a particular emphasis on stepped-up comfort foods. The site also includes numerous tutorials on topics as diverse as how to poach an egg and how to make tart doughs that dont shrink up on you.Deb makes a point of only using commonly available ingredients.The Recipes page splits all of the sites recipes up by type, with additional subdivisions for Fruit, Meat, Sweets, and Vegetables.",
+      "title": " Smitten Kitchen",
       "author": "Ranjini Rao",
+      "category": "Food",
       "image": "https://miro.medium.com/v2/resize:fill:200:134/1*q1bV1fG_FQLPbmv4svz2NA.png",
-      "category": "Food"
+      "description": "Smitten Kitchen features delectable images of meals demanding to be eaten. Therefore should be no surprise that Smitten Kitchen has found great popularity with serious food fans.Smitten Kitchen summarizes itself as being “Fearless cooking from a tiny kitchen in New York City.” It was created by Deb Perelman who obsessed with the intricacies of food and cooking. As she says on her About page, she loves being able to wake and cook whatever she feels like that day.The recipes are the heart of this site. There is a particular emphasis on stepped-up comfort foods. The site also includes numerous tutorials on topics as diverse as how to poach an egg and how to make tart doughs that dont shrink up on you.Deb makes a point of only using commonly available ingredients.The Recipes page splits all of the sites recipes up by type, with additional subdivisions for Fruit, Meat, Sweets, and Vegetables.",
+      "userId": 1,
+      "id": 10
     }
   ]
 }
