@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { AgGridReact } from "ag-grid-react";
 import { Button, TextField } from "@mui/material";
-import StatusDialog from "../components/StatusDialog";
-import RoleDialog from "../components/RoleDialog";
-import DeleteDialog from "../components/DeleteDialog";
 import { useSelector, useDispatch } from "react-redux";
 import { getUsers } from "../store/users-slice";
+import ConfirmationDialog from "../components/ConfirmationDialog";
 
-const actionHandler = ({ data, handleRoleOpen, handleDeleteOpen }) => {
+const actionHandler = ({ data, handleOpen }) => {
   const changeRoleHandler = () => {
-    handleRoleOpen(data);
+    let newData = { ...data, key: "role" };
+    handleOpen(newData);
   };
 
   const deleteUserHandler = () => {
-    handleDeleteOpen(data);
+    let newData = { ...data, key: "delete" };
+    handleOpen(newData);
   };
 
   return (
@@ -39,9 +39,10 @@ const actionHandler = ({ data, handleRoleOpen, handleDeleteOpen }) => {
   );
 };
 
-const statusHandler = ({ data, handleStatusOpen }) => {
+const statusHandler = ({ data, handleOpen }) => {
+  let newData = { ...data, key: "status" };
   const changeStatusHandler = () => {
-    handleStatusOpen(data);
+    handleOpen(newData);
   };
 
   return (
@@ -68,39 +69,17 @@ const Users = () => {
 
   const filterKeys = ["firstName", "lastName", "email", "phoneNumber", "role"];
 
-  const [statusOpen, setStatusOpen] = useState(false);
-  const [statusData, setStatusData] = useState({});
-  const [roleOpen, setRoleOpen] = useState(false);
-  const [roleData, setRoleData] = useState({});
-  const [deleteOpen, setDeleteOpen] = useState(false);
-  const [deleteData, setDeleteData] = useState({});
   const [search, setSearch] = useState("");
+  const [open, setOpen] = useState(false);
+  const [data, setData] = useState({});
 
-  const handleStatusOpen = (data) => {
-    setStatusData(data);
-    setStatusOpen(true);
+  const handleOpen = (data) => {
+    setData(data);
+    setOpen(true);
   };
 
-  const handleStatusClose = () => {
-    setStatusOpen(false);
-  };
-
-  const handleRoleOpen = (data) => {
-    setRoleData(data);
-    setRoleOpen(true);
-  };
-
-  const handleRoleClose = () => {
-    setRoleOpen(false);
-  };
-
-  const handleDeleteOpen = (data) => {
-    setDeleteData(data);
-    setDeleteOpen(true);
-  };
-
-  const handleDeleteClose = () => {
-    setDeleteOpen(false);
+  const handleClose = () => {
+    setOpen(false);
   };
 
   useEffect(() => {
@@ -129,7 +108,7 @@ const Users = () => {
       maxWidth: 120,
       cellRenderer: statusHandler,
       cellRendererParams: {
-        handleStatusOpen,
+        handleOpen,
       },
     },
     {
@@ -140,8 +119,7 @@ const Users = () => {
       maxWidth: 350,
       cellRenderer: actionHandler,
       cellRendererParams: {
-        handleRoleOpen,
-        handleDeleteOpen,
+        handleOpen,
       },
     },
   ]);
@@ -202,21 +180,7 @@ const Users = () => {
           paginationAutoPageSize={true}
         />
       </div>
-      <StatusDialog
-        open={statusOpen}
-        handleStatusClose={handleStatusClose}
-        data={statusData}
-      />
-      <RoleDialog
-        open={roleOpen}
-        handleRoleClose={handleRoleClose}
-        data={roleData}
-      />
-      <DeleteDialog
-        open={deleteOpen}
-        handleDeleteClose={handleDeleteClose}
-        data={deleteData}
-      />
+      <ConfirmationDialog open={open} handleClose={handleClose} data={data} />
     </div>
   );
 };

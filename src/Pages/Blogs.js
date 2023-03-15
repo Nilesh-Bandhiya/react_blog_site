@@ -5,11 +5,11 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button, TextField } from "@mui/material";
 import BlogDialog from "../components/BlogDialog";
-import CardDialog from "../components/CardDialog";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getBlogs } from "../store/blogs-slice";
 import { getMyBlogs } from "../api/blogsApi";
+import ConfirmationDialog from "../components/ConfirmationDialog";
 
 const actionHandler = ({ handleDeleteOpen, handleEditOpen, data }) => {
   const editBlogHandler = () => {
@@ -17,7 +17,8 @@ const actionHandler = ({ handleDeleteOpen, handleEditOpen, data }) => {
   };
 
   const deleteBlogHandler = () => {
-    handleDeleteOpen(data);
+    let newData = { ...data, key: "deleteBlog" };
+    handleDeleteOpen(newData);
   };
 
   return (
@@ -81,14 +82,14 @@ const Blogs = () => {
 
   useEffect(() => {
     const getAdminBlog = async () => {
-        if (location.pathname === "/myblogs") {
-          const myBlogs = await getMyBlogs(currentUserId);
-          setBlogsData(myBlogs);
-        } else {
-          setBlogsData(blogs);
-        }
+      if (location.pathname === "/myblogs") {
+        const myBlogs = await getMyBlogs(currentUserId);
+        setBlogsData(myBlogs);
+      } else {
+        setBlogsData(blogs);
+      }
     };
-    getAdminBlog()
+    getAdminBlog();
   }, [blogs, currentUserId, isAdmin, location.pathname]);
 
   const handleEditOpen = (data) => {
@@ -240,11 +241,10 @@ const Blogs = () => {
         handleEditClose={handleEditClose}
         currentUserId={currentUserId}
       />
-      <CardDialog
+      <ConfirmationDialog
         open={deleteOpen}
+        handleClose={handleDeleteClose}
         data={data}
-        handleDeleteClose={handleDeleteClose}
-        currentUserId={currentUserId}
       />
     </div>
   );
