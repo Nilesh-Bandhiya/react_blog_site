@@ -5,26 +5,15 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useDispatch } from "react-redux";
 import { getUsers } from "../store/users-slice";
-import { toast } from "react-toastify";
+import { deleteUser } from "../api/usersApi";
 
 const DeleteDialog = ({ open, handleDeleteClose, data }) => {
   const dispatch = useDispatch();
-  let { id, firstName } = data;
+  let { firstName } = data;
 
-  const handleDeleteBlog = () => {
-    fetch(`http://localhost:5000/users/${id}`, {
-      method: "DELETE",
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        dispatch(getUsers());
-        toast.success(`${firstName} Deleted Successfully`);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        toast.error(error.message);
-      });
-
+  const handleDeleteBlog = async () => {
+    await deleteUser(data);
+    dispatch(getUsers());
     handleDeleteClose();
   };
 

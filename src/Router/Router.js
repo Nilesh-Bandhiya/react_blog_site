@@ -1,14 +1,14 @@
 import React from 'react'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import BlogDetail from "../Pages/BlogDetail"
-import Blogs from "../Pages/Blogs";
-import Login from "../Pages/Login";
-import SignUp from "../Pages/SingUp";
-import Users from "../Pages/Users";
-import MainLayout from "../components/MainLayout";
-import { ProtectedLoginRoute, ProtectedAdminRoute, ProtectedLogoutRoute, ProtectedUserRoute } from "../Auth/ProtectedRoutes";
-import About from "../Pages/About";
-import UserDetail from "../Pages/UserDetail";
+import BlogDetail from "../pages/BlogDetail"
+import Blogs from "../pages/Blogs";
+import Login from "../pages/Login";
+import SignUp from "../pages/Register";
+import Users from "../pages/Users";
+import MainLayout from "../layout/MainLayout";
+import { ProtectedLoginRoute, ProtectedAdminRoute, ProtectedLogoutRoute, ProtectedUserRoute } from "../auth/ProtectedRoutes";
+import About from "../pages/About";
+import UserDetail from "../pages/UserDetail";
 
 const Router = () => {
 
@@ -18,7 +18,7 @@ const Router = () => {
           element: <MainLayout />,
           children: [
             { index: true, element: <Blogs  /> },
-            { path: "myblogs", element: <Blogs  /> },
+            { path: "myblogs", element: <ProtectedAdminRoute><Blogs  /></ProtectedAdminRoute> },
             { path: ":blogId", element: <ProtectedLoginRoute><BlogDetail /></ProtectedLoginRoute> },
             { path: "users", element: <ProtectedAdminRoute><Users /></ProtectedAdminRoute> },
             { path: "users/:userId", element: <ProtectedUserRoute><UserDetail /></ProtectedUserRoute> },

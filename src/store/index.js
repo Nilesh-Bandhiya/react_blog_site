@@ -15,11 +15,12 @@ const rootReducer = combineReducers({
   users:usersReducer,
 });
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+// const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: persistedReducer,
-  middleware: [thunk],
+  reducer: rootReducer
+  // reducer: persistedReducer,
+  // middleware: [thunk],
 });
 
-export const persistor = persistStore(store);
+// export const persistor = persistStore(store);  

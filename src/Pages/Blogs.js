@@ -9,6 +9,7 @@ import CardDialog from "../components/CardDialog";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getBlogs } from "../store/blogs-slice";
+import { getMyBlogs } from "../api/blogsApi";
 
 const actionHandler = ({ handleDeleteOpen, handleEditOpen, data }) => {
   const editBlogHandler = () => {
@@ -79,14 +80,15 @@ const Blogs = () => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    if (isAdmin) {
-      if (location.pathname === "/myblogs") {
-        let myBlogs = blogs.filter((blog) => blog.userId === currentUserId);
-        setBlogsData(myBlogs);
-      } else {
-        setBlogsData(blogs);
-      }
-    }
+    const getAdminBlog = async () => {
+        if (location.pathname === "/myblogs") {
+          const myBlogs = await getMyBlogs(currentUserId);
+          setBlogsData(myBlogs);
+        } else {
+          setBlogsData(blogs);
+        }
+    };
+    getAdminBlog()
   }, [blogs, currentUserId, isAdmin, location.pathname]);
 
   const handleEditOpen = (data) => {
@@ -206,9 +208,11 @@ const Blogs = () => {
             onChange={(e) => setSearch(e.target.value)}
             sx={{ width: "50vw" }}
           />
-          {isAdmin && (<Button variant="contained" onClick={handleEditOpen}>
-            Add Blog
-          </Button>)}
+          {isAdmin && (
+            <Button variant="contained" onClick={handleEditOpen}>
+              Add Blog
+            </Button>
+          )}
         </div>
 
         <div

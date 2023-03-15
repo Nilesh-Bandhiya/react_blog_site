@@ -14,7 +14,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { registerUser } from "../API/api";
+import { registerUser } from "../api/usersApi";
 
 function Copyright(props) {
   return (

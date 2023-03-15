@@ -5,31 +5,15 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useDispatch } from "react-redux";
 import { getBlogs } from "../store/blogs-slice";
-import { toast } from "react-toastify";
+import { deleteBlog } from "../api/blogsApi";
 
-const CardDialog = ({ open, handleDeleteClose, data, currentUserId }) => {
+const CardDialog = ({ open, handleDeleteClose, data }) => {
   const dispatch = useDispatch();
-  let { id, title, userId } = data;
+  let { title } = data;
 
-  const handleDeleteBlog = () => {
-    if (userId === currentUserId) {
-      fetch(`http://localhost:5000/blogs/${id}`, {
-        method: "DELETE",
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          dispatch(getBlogs());
-          toast.success("Blog Deleted Successfully");
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-          toast.success(error.message);
-          dispatch(getBlogs());
-        });
-    } else {
-      toast.error("You can not Delete this Blog");
-    }
-
+  const handleDeleteBlog = async () => {
+    await deleteBlog(data);
+    dispatch(getBlogs());
     handleDeleteClose();
   };
 

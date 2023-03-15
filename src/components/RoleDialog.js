@@ -5,36 +5,19 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useDispatch } from "react-redux";
 import { getUsers } from "../store/users-slice";
-import { toast } from "react-toastify";
+import { updateUser } from "../api/usersApi";
 
 const RoleDialog = ({ open, handleRoleClose, data }) => {
   const dispatch = useDispatch();
 
-  let { id, firstName, role } = data;
+  let { firstName, role } = data;
 
-  const roleChangeHandler = () => {
+  const roleChangeHandler = async () => {
     // first we need to change the role of user then we send put request to backend
     let upadtedData = { ...data, role: role === "user" ? "admin" : "user" };
 
-    fetch(`http://localhost:5000/users/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(upadtedData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        dispatch(getUsers());
-        toast.success(
-          `Now ${firstName} is ${role === "user" ? "admin" : "user"}`
-        );
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        toast.error(error.message);
-        dispatch(getUsers());
-      });
+    await updateUser(upadtedData, "role");
+    dispatch(getUsers());
     handleRoleClose();
   };
 
@@ -48,7 +31,7 @@ const RoleDialog = ({ open, handleRoleClose, data }) => {
       >
         <DialogTitle id="alert-dialog-title">
           {`Are you sure to change ${firstName}'s role ${role} to ${
-            role === "user" ? "admin" : "user"
+            role === "user" ? "Admin" : "User"
           }`}
         </DialogTitle>
         <DialogActions>

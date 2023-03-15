@@ -18,7 +18,7 @@ import * as yup from "yup";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getUsers } from "../store/users-slice";
-import { loginUser } from "../API/api";
+import { loginUser } from "../api/usersApi";
 
 const Copyright = (props) => {
   return (

@@ -12,7 +12,7 @@
       "id": 1
     },
     {
-      "firstName": "Nilesh ",
+      "firstName": "Nilesh",
       "lastName": "Bandhiya",
       "phoneNumber": "8954665656",
       "email": "nilesh@gmail.com",
@@ -111,25 +111,14 @@
       "id": 10
     },
     {
-      "firstName": "Vishal",
-      "lastName": "Chavda",
-      "phoneNumber": "8888899899",
-      "email": "vishal@gmail.com",
-      "password": "Vishal@321",
-      "cpassword": "Vishal@321",
-      "role": "user",
-      "active": true,
-      "id": 11
-    },
-    {
       "firstName": "Kaan ",
       "lastName": "Ayar",
       "phoneNumber": "6756787656",
       "email": "kaan@gmail.com",
       "password": "Kaan@321",
       "cpassword": "Kaan@321",
-      "role": "user",
-      "active": false,
+      "role": "admin",
+      "active": true,
       "id": 12
     }
   ],
@@ -138,9 +127,9 @@
       "title": "Javascript",
       "author": "Nishant Singh",
       "category": "CS-IT",
-      "userId": 1,
       "image": "https://miro.medium.com/v2/resize:fill:200:134/1*liYEIkafclN-rwdAqaZJ4Q.png",
       "description": "JavaScript is a high-level, often just-in-time compiled language that conforms to the ECMAScript standard.[10] It has dynamic typing, prototype-based object-orientation, and first-class functions. It is multi-paradigm, supporting event-driven, functional, and imperative programming styles. It has application programming interfaces (APIs) for working with text, dates, regular expressions, standard data structures, and the Document Object Model (DOM).The ECMAScript standard does not include any input/output (I/O), such as networking, storage, or graphics facilities. In practice, the web browser or other runtime system provides JavaScript APIs for I/O.JavaScript engines were originally used only in web browsers, but are now core components of some servers and a variety of applications. The most popular runtime system for this usage is Node.js. Although Java and JavaScript are similar in name, syntax, and respective standard libraries, the two languages are distinct and differ greatly in design.",
+      "userId": 1,
       "id": 1
     },
     {

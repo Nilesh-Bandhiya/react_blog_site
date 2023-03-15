@@ -10,7 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { getBlogs } from "../store/blogs-slice";
 import { useDispatch } from "react-redux";
-import { toast } from "react-toastify";
+import { addBlog, updateBlog } from "../api/blogsApi";
 
 const BlogDialog = ({ open, handleEditClose, formData, currentUserId }) => {
   const dispatch = useDispatch();
@@ -92,51 +92,17 @@ const BlogDialog = ({ open, handleEditClose, formData, currentUserId }) => {
     }
   }, [author, category, description, id, title, image, setValue]);
 
-  const addBlogHandler = (data) => {
+  const addBlogHandler = async (data) => {
     // when new blog added we also save which admin add this blog
+    let newDataUpdate = { ...data, userId: userId, id: id };
     let newData = { ...data, userId: currentUserId };
-    let newDataUpdate = { ...data, userId: userId };
 
     if (id) {
-      if (userId === currentUserId) {
-        fetch(`http://localhost:5000/blogs/${id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newDataUpdate),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            dispatch(getBlogs());
-            toast.success("Blog Updated Successfully");
-          })
-          .catch((error) => {
-              console.error("Error:", error);
-              toast.error(error.message);
-              dispatch(getBlogs());
-          });
-      } else {
-        toast.error("You can not Update this Blog");
-      }
+      await updateBlog(newDataUpdate);
+      dispatch(getBlogs());
     } else {
-      fetch("http://localhost:5000/blogs", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newData),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          dispatch(getBlogs());
-          toast.success("Blog Added Successfully");
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-          toast.error(error.message);
-          dispatch(getBlogs());
-        });
+      await addBlog(newData);
+      dispatch(getBlogs());
     }
 
     handleEditClose();
