@@ -96,7 +96,7 @@ const SignUp = () => {
       return
     }
 
-    let newData = { ...data, role: "user" }
+    let newData = { ...data, role: "user", active: false }
 
     fetch("http://localhost:5000/users", {
       method: "POST",
