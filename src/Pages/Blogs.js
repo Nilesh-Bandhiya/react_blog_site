@@ -225,7 +225,8 @@ const Blogs = () => {
             columnDefs={columnDefs}
             defaultColDef={defaultColDef}
             animateRows={true}
-            rowSelection="multiple"
+            pagination={true}
+            paginationAutoPageSize={true}
           />
         </div>
       </div>
