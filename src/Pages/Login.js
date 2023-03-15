@@ -17,6 +17,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
 import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from "react-redux";
+import { getUsers } from "../store/users-slice";
 
 const Copyright = (props) => {
   return (
@@ -38,16 +40,14 @@ const Copyright = (props) => {
 
 const Login = () => {
   const navigate = useNavigate()
-  // const users = useSelector((state) => state.users.users) 
-  const [users, setUsers] = useState([])
+  const dispatch = useDispatch()
+  const users = useSelector((state) => state.users.users) 
 
   useEffect(() => {
-    fetch("http://localhost:5000/users")
-      .then((result) => result.json())
-      .then((data) => setUsers(data)).catch((error) => {
-        toast.error(error.message)
-      });
-  }, []);
+    dispatch(getUsers())
+  }, [dispatch]);
+
+
   const validation = yup.object().shape({
     email: yup
       .string()
@@ -82,6 +82,7 @@ const Login = () => {
           toast.success("Loggedin successfully")
           let token = { user: user.firstName, email: user.email, role: user.role, userId: user.id }
           localStorage.setItem("token", JSON.stringify(token))
+          
           navigate("/")
         } else {
           toast.error("Sorry You can't Loggedin")
