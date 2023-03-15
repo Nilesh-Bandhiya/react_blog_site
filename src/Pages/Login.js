@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -16,9 +16,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
-import { toast } from 'react-toastify';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getUsers } from "../store/users-slice";
+import { loginUser } from "../API/api";
 
 const Copyright = (props) => {
   return (
@@ -41,7 +41,6 @@ const Copyright = (props) => {
 const Login = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const users = useSelector((state) => state.users.users) 
 
   useEffect(() => {
     dispatch(getUsers())
@@ -62,35 +61,23 @@ const Login = () => {
 
   const {
     register,
-    setError,
     handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validation),
   });
 
-  const loginHandler = (data) => {
 
-    const user = users?.find((user) => user.email === data.email);
+  const loginHandler = async (data) => {
 
-    if (user) {
-      if (data.password !== user.password) {
-        setError("password", { type: "custom", message: "Invalid Password or UserName" }, { shouldFocus: true });
-      } else {
+    let loggedinUser = await loginUser(data)
 
-        if (user.active) {
-          toast.success("Loggedin successfully")
-          let token = { user: user.firstName, email: user.email, role: user.role, userId: user.id }
-          localStorage.setItem("token", JSON.stringify(token))
-          
-          navigate("/")
-        } else {
-          toast.error("Sorry You can't Loggedin")
-        }
-      }
-    } else {
-      setError("email", { type: "custom", message: "User is not Valid" }, { shouldFocus: true });
+    if (loggedinUser) {
+      let token = { user: loggedinUser.firstName, email: loggedinUser.email, role: loggedinUser.role, userId: loggedinUser.id }
+      localStorage.setItem("token", JSON.stringify(token))
+      navigate("/")
     }
+
   }
 
 

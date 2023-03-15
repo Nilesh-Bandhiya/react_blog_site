@@ -109,6 +109,28 @@
       "role": "user",
       "active": true,
       "id": 10
+    },
+    {
+      "firstName": "Vishal",
+      "lastName": "Chavda",
+      "phoneNumber": "8888899899",
+      "email": "vishal@gmail.com",
+      "password": "Vishal@321",
+      "cpassword": "Vishal@321",
+      "role": "user",
+      "active": true,
+      "id": 11
+    },
+    {
+      "firstName": "Kaan ",
+      "lastName": "Ayar",
+      "phoneNumber": "6756787656",
+      "email": "kaan@gmail.com",
+      "password": "Kaan@321",
+      "cpassword": "Kaan@321",
+      "role": "user",
+      "active": false,
+      "id": 12
     }
   ],
   "blogs": [

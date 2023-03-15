@@ -14,8 +14,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { toast } from 'react-toastify';
-import { useSelector } from "react-redux";
+import { registerUser } from "../API/api";
 
 function Copyright(props) {
   return (
@@ -37,7 +36,6 @@ function Copyright(props) {
 
 const SignUp = () => {
   const navigate =  useNavigate()
-  const users = useSelector((state) => state.users.users) 
 
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
@@ -83,13 +81,7 @@ const SignUp = () => {
     resolver: yupResolver(validation),
   });
 
-  const signUpHandler = (data) => {
-
-    const user = users?.find((user) => user.email === data.email);
-    if(user){
-      setError("email", { type: "custom", message: "Email is already exist try with another email" }, { shouldFocus: true });
-      return
-    }
+  const signUpHandler = async (data) => {
 
     if(data.password !== data.cpassword){
       setError("cpassword", { type: "custom", message: "Confirm Password Did not match previous Password" }, { shouldFocus: true });
@@ -98,23 +90,11 @@ const SignUp = () => {
 
     let newData = { ...data, role: "user", active: false }
 
-    fetch("http://localhost:5000/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        toast.success("User Registered Successfully")
-        navigate("/signin")
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        toast.error(error.message)
-      });
+    const registeredUser = await registerUser(newData)
 
+    if (registeredUser) {
+      navigate("/signin")
+    }
 
   };
 
@@ -124,7 +104,6 @@ const SignUp = () => {
       <Paper
         elevation={5}
         sx={{
-          // marginTop: `${Object.keys(errors).length === 0 ? "24px" : "0px"}`,
           padding: 2,
         }}
       >
