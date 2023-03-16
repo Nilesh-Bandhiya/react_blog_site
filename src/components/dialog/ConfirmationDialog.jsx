@@ -20,19 +20,27 @@ const ConfirmationDialog = ({ open, handleClose, data }) => {
 
   const confirmHandler = async () => {
     if (key === "status") {
+      //in that case our data included with key and we don't need key anymore so first we need to delete key in the data
+      delete data['key'];
       // first we need to change the status of user then we send put request to backend
-      let upadtedData = { ...data, active: !active };
+      let upadtedData = { ...data, active: !active,  };
       await updateUser(upadtedData, key);
       dispatch(getUsers());
     } else if (key === "role") {
+       //in that case our data included with key and we don't need key anymore so first we need to delete key in the data
+       delete data['key'];
       // first we need to change the role of user then we send put request to backend
       let upadtedData = { ...data, role: role === "user" ? "admin" : "user" };
       await updateUser(upadtedData, key);
       dispatch(getUsers());
     } else if (key === "delete") {
+       //in that case our data included with key and we don't need key anymore so first we need to delete key in the data
+       delete data['key'];
       await deleteUser(data);
       dispatch(getUsers());
     } else if (key === "deleteBlog") {
+       //in that case our data included with key and we don't need key anymore so first we need to delete key in the data
+       delete data['key'];
       await deleteBlog(data);
       dispatch(getBlogs());
     } else {

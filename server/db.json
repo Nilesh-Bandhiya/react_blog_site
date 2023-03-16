@@ -9,8 +9,7 @@
       "cpassword": "Radhe@321",
       "role": "admin",
       "active": true,
-      "id": 1,
-      "key": "role"
+      "id": 1
     },
     {
       "firstName": "Nilesh",
@@ -30,10 +29,9 @@
       "email": "tulsi@gmail.com",
       "password": "Tulsi@321",
       "cpassword": "Tulsi@321",
-      "role": "user",
+      "role": "admin",
       "active": true,
-      "id": 3,
-      "key": "role"
+      "id": 3
     },
     {
       "firstName": "Hetakshi",
@@ -44,8 +42,7 @@
       "cpassword": "Hetakshi@321",
       "role": "user",
       "active": true,
-      "id": 4,
-      "key": "role"
+      "id": 4
     },
     {
       "firstName": "Shyam ",
@@ -56,8 +53,7 @@
       "cpassword": "Shyam@321",
       "role": "admin",
       "active": true,
-      "id": 5,
-      "key": "role"
+      "id": 5
     },
     {
       "firstName": "Krinal ",
@@ -121,7 +117,7 @@
       "email": "kaan@gmail.com",
       "password": "Kaan@321",
       "cpassword": "Kaan@321",
-      "role": "admin",
+      "role": "user",
       "active": true,
       "id": 11
     }
