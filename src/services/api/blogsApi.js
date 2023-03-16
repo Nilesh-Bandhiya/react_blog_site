@@ -1,9 +1,10 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import { APIS } from "../../constants/constants";
 
 export const addBlog = async (blog) => {
   try {
-    const response = await axios.post(`http://localhost:5000/blogs`, blog);
+    const response = await axios.post(APIS.BLOGS_API, blog);
     const addedBlog = await response?.data;
 
     if (addedBlog) {
@@ -17,11 +18,11 @@ export const addBlog = async (blog) => {
 
 export const updateBlog = async (blog) => {
   const token = JSON.parse(localStorage.getItem("token"));
-  const currentUserId = token?.userId;
+  const currentUserId = token?.id;
   try {
     if (blog.userId === currentUserId) {
       const response = await axios.put(
-        `http://localhost:5000/blogs/${blog.id}`,
+        `${APIS.BLOGS_API}/${blog.id}`,
         blog
       );
       const updatedBlog = await response?.data;
@@ -40,11 +41,11 @@ export const updateBlog = async (blog) => {
 
 export const deleteBlog = async (blog) => {
   const token = JSON.parse(localStorage.getItem("token"));
-  const currentUserId = token?.userId;
+  const currentUserId = token?.id;
   try {
     if (blog.userId === currentUserId) {
       const response = await axios.delete(
-        `http://localhost:5000/blogs/${blog.id}`
+        `${APIS.BLOGS_API}/${blog.id}`
       );
 
       if (response.status === 200) {
@@ -61,7 +62,7 @@ export const deleteBlog = async (blog) => {
 export const getBlogDetails = async (blogId) => {
   try {
     const response = await axios.get(
-      `http://localhost:5000/blogs/?id=${blogId}`
+      `${APIS.BLOGS_API}/?id=${blogId}`
     );
     const blog = await response.data[0];
     if (blog) {
@@ -77,7 +78,7 @@ export const getBlogDetails = async (blogId) => {
 export const getMyBlogs = async (id) => {
   try {
     const response = await axios.get(
-      `http://localhost:5000/blogs/?userId=${id}`
+      `${APIS.BLOGS_API}/?userId=${id}`
     );
     const myBlogs = await response.data;
     if (myBlogs.length > 0) {

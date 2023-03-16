@@ -5,12 +5,11 @@ export const ProtectedAdminRoute = (props) => {
   const navigate = useNavigate();
   const [isAdmin, setIsAdmin] = useState(false);
 
-
   const checkAdmin = () => {
 
     let token = JSON.parse(localStorage.getItem("token"))
 
-    if (!token || token === 'undefined' || token?.role !== "admin") {
+    if (!token || token?.role !== "admin") {
       setIsAdmin(false);
       return navigate('/signin');
     }
@@ -104,7 +103,7 @@ export const ProtectedUserRoute = (props) => {
 
     let token = JSON.parse(localStorage.getItem("token"))
 
-    if (token && token?.userId !== parseInt(params.userId) ) {
+    if (token && token?.id !== parseInt(params.userId) ) {
       setIsCurrentUser(false);
       return navigate('/');
     }

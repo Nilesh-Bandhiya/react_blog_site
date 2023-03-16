@@ -33,7 +33,7 @@
       "role": "user",
       "active": true,
       "id": 3,
-      "key": "status"
+      "key": "role"
     },
     {
       "firstName": "Hetakshi",
@@ -115,7 +115,7 @@
       "id": 10
     },
     {
-      "firstName": "Kaan ",
+      "firstName": "Kaan",
       "lastName": "Ayar",
       "phoneNumber": "6756787656",
       "email": "kaan@gmail.com",

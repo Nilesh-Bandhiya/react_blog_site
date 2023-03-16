@@ -5,8 +5,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
 import SideBar from "./SideBar";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Footer from "./Footer";
 
 const drawerWidth = 180;
@@ -39,7 +39,6 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 const MainLayout = () => {
-
   const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
@@ -50,14 +49,17 @@ const MainLayout = () => {
     setOpen(false);
   };
 
-
   return (
     <>
       <ToastContainer />
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
 
-        <Navbar handleDrawerOpen={handleDrawerOpen} handleDrawerClose={handleDrawerClose} open={open} />
+        <Navbar
+          handleDrawerOpen={handleDrawerOpen}
+          handleDrawerClose={handleDrawerClose}
+          open={open}
+        />
 
         <SideBar handleDrawerClose={handleDrawerClose} open={open} />
 
@@ -66,9 +68,9 @@ const MainLayout = () => {
           <Outlet />
         </Main>
       </Box>
-      <div style={{ position: "fixed", bottom: 0 , width:"100%"}} >
+      <Box style={{ position: "fixed", bottom: 0, width: "100%" }}>
         <Footer />
-      </div>
+      </Box>
     </>
   );
 };

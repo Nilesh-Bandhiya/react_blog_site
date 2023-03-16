@@ -67,7 +67,7 @@ const Blogs = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   let token = JSON.parse(localStorage.getItem("token"));
-  let currentUserId = token?.userId;
+  let currentUserId = token?.id;
   let isAdmin = token?.role === "admin";
 
   const filterKeys = ["title", "author", "description", "category"];

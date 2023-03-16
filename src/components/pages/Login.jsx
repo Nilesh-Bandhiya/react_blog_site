@@ -74,13 +74,11 @@ const Login = () => {
     let loggedinUser = await loginUser(data)
 
     if (loggedinUser) {
-      let token = { user: loggedinUser.firstName, email: loggedinUser.email, role: loggedinUser.role, userId: loggedinUser.id }
-      localStorage.setItem("token", JSON.stringify(token))
+      localStorage.setItem("token", JSON.stringify(loggedinUser))
       navigate("/")
     }
 
   }
-
 
   return (
     <Container component="main" maxWidth="xs">
