@@ -15,9 +15,7 @@
 }
 
 .blog {
-  width: 1130px;
   display: flex;
-  max-width: 85%;
 }
 
 .blog-picture {
@@ -36,12 +34,12 @@
 }
 
 .title {
-  font-size: 60px;
+  font-size: 50px;
   font-weight: 600;
 }
 
 .author {
-  font-size: 50px;
+  font-size: 45px;
   font-weight: 600;
   margin-bottom: 10px;
 }

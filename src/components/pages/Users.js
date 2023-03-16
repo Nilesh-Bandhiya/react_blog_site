@@ -2,8 +2,8 @@ import React, { useState, useEffect, useMemo } from "react";
 import { AgGridReact } from "ag-grid-react";
 import { Button, TextField } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import { getUsers } from "../store/users-slice";
-import ConfirmationDialog from "../components/ConfirmationDialog";
+import { getUsers } from "../../store/users-slice";
+import ConfirmationDialog from "../dialog/ConfirmationDialog";
 
 const actionHandler = ({ data, handleOpen }) => {
   const changeRoleHandler = () => {

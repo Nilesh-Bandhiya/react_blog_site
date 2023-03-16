@@ -7,6 +7,7 @@ import Navbar from "./Navbar";
 import SideBar from "./SideBar";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from "./Footer";
 
 const drawerWidth = 180;
 
@@ -65,6 +66,9 @@ const MainLayout = () => {
           <Outlet />
         </Main>
       </Box>
+      <div style={{ position: "fixed", bottom: 0 , width:"100%"}} >
+        <Footer />
+      </div>
     </>
   );
 };

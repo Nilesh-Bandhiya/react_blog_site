@@ -14,8 +14,8 @@ import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { IconButton } from "@mui/material";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { getUsers } from "../store/users-slice";
-import { updateUser } from "../api/usersApi";
+import { updateUser } from "../../services/api/usersApi";
+import { getUsers } from "../../store/users-slice";
 
 const UserDetail = () => {
   const params = useParams();

@@ -8,9 +8,9 @@ import Textarea from "@mui/joy/Textarea";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { getBlogs } from "../store/blogs-slice";
 import { useDispatch } from "react-redux";
-import { addBlog, updateBlog } from "../api/blogsApi";
+import { getBlogs } from "../../store/blogs-slice";
+import { addBlog, updateBlog } from "../../services/api/blogsApi";
 
 const BlogDialog = ({ open, handleEditClose, formData, currentUserId }) => {
   const dispatch = useDispatch();

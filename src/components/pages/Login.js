@@ -17,8 +17,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { getUsers } from "../store/users-slice";
-import { loginUser } from "../api/usersApi";
+import { getUsers } from "../../store/users-slice";
+import { loginUser } from "../../services/api/usersApi";
+
 
 const Copyright = (props) => {
   return (

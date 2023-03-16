@@ -4,12 +4,13 @@ import IconButton from "@mui/material/IconButton";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button, TextField } from "@mui/material";
-import BlogDialog from "../components/BlogDialog";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getBlogs } from "../store/blogs-slice";
-import { getMyBlogs } from "../api/blogsApi";
-import ConfirmationDialog from "../components/ConfirmationDialog";
+import { getMyBlogs } from "../../services/api/blogsApi";
+import { getBlogs } from "../../store/blogs-slice";
+import BlogDialog from "../dialog/BlogDialog";
+import ConfirmationDialog from "../dialog/ConfirmationDialog";
+
 
 const actionHandler = ({ handleDeleteOpen, handleEditOpen, data }) => {
   const editBlogHandler = () => {

@@ -10,7 +10,7 @@
       "role": "admin",
       "active": true,
       "id": 1,
-      "key": "status"
+      "key": "role"
     },
     {
       "firstName": "Nilesh",
@@ -54,9 +54,10 @@
       "email": "shyam@gmail.com",
       "password": "Shyam@321",
       "cpassword": "Shyam@321",
-      "role": "user",
+      "role": "admin",
       "active": true,
-      "id": 5
+      "id": 5,
+      "key": "role"
     },
     {
       "firstName": "Krinal ",
@@ -136,39 +137,39 @@
       "id": 1
     },
     {
-      "id": 2,
-      "userId": 1,
       "title": "Data Structure ",
+      "author": "Suresh",
+      "category": "CS-IT",
       "image": "https://miro.medium.com/v2/resize:fill:200:134/1*4-WRim5zyfn8nGYjtuUEdQ.jpeg",
       "description": "In computer science, a data structure is a data organization, management, and storage format that is usually chosen for efficient access to data. More precisely, a data structure is a collection of data values, the relationships among them, and the functions or operations that can be applied to the data, i.e., it is an algebraic structure about data. Data structures provide a means to manage large amounts of data efficiently for uses such as large databases and internet indexing services. Usually, efficient data structures are key to designing efficient algorithms. Some formal design methods and programming languages emphasize data structures, rather than algorithms, as the key organizing factor in software design. Data structures can be used to organize the storage and retrieval of information stored in both main memory and secondary memory.",
-      "author": "Suresh Kr",
-      "category": "CS-IT"
+      "userId": 1,
+      "id": 2
     },
     {
-      "id": 3,
-      "userId": 2,
       "title": "Algorithm",
+      "author": "Monu",
+      "category": "CS-IT",
       "image": "https://miro.medium.com/v2/resize:fill:200:134/1*s1aE1bTkYmdddkPTqePZuA.jpeg",
       "description": "Algorithms can be expressed in many kinds of notation, including natural languages, pseudocode, flowcharts, drakon-charts, programming languages or control tables (processed by interpreters). Natural language expressions of algorithms tend to be verbose and ambiguous, and are rarely used for complex or technical algorithms. Pseudocode, flowcharts, drakon-charts and control tables are structured ways to express algorithms that avoid many of the ambiguities common in the statements based on natural language. Programming languages are primarily intended for expressing algorithms in a form that can be executed by a computer, but are also often used as a way to define or document algorithms.There is a wide variety of representations possible and one can express a given Turing machine program as a sequence of machine tables (see finite-state machine, state transition table and control table for more), as flowcharts and drakon-charts (see state diagram for more), or as a form of rudimentary machine code or assembly code called sets of quadruples (see Turing machine for more).",
-      "author": "Monu Kr",
-      "category": "CS-IT"
+      "userId": 2,
+      "id": 3
     },
     {
-      "id": 4,
-      "userId": 1,
       "title": "Computer Network",
+      "author": "Sonu",
+      "category": "CS-IT",
       "image": "https://miro.medium.com/v2/resize:fill:200:134/1*Z9Msl9UY6vp_c-dIHzYqPQ.jpeg",
       "description": "A computer network is a set of computers sharing resources located on or provided by network nodes. The computers use common communication protocols over digital interconnections to communicate with each other. These interconnections are made up of telecommunication network technologies, based on physically wired, optical, and wireless radio-frequency methods that may be arranged in a variety of network topologies.The nodes of a computer network can include personal computers, servers, networking hardware, or other specialized or general-purpose hosts. They are identified by network addresses, and may have hostnames. Hostnames serve as memorable labels for the nodes, rarely changed after initial assignment. Network addresses serve for locating and identifying the nodes by communication protocols such as the Internet Protocol.",
-      "author": "Sonu Kr",
-      "category": "CS-IT"
+      "userId": 1,
+      "id": 4
     },
     {
       "title": "Dan Flying Solo",
-      "author": "Pico Iyer",
+      "author": "Jhumpa Lahari",
       "category": "Travel",
-      "userId": 2,
       "image": "https://miro.medium.com/v2/resize:fill:200:134/1*F6ZwcDCqfcIakTpnEwuSmw.jpeg",
       "description": "Dan is one of the best travel bloggers in the world, hands down. Born and raised in the UK, he is an incredible writer and photographer whose work has been featured in many major publications, including Travel + Leisure and National Geographic. I would be remiss if I covered the best blogs on travel without mentioning him.I had the privilege and pleasure of meeting Dan on a press trip in Aruba back in 2018, and we have been friends ever since. Dan covers a variety of exotic destinations on his travel blog, Dan Flying Solo, with a focus on lesser-known places. In addition to his blog, Dan is a Lonely Planet Ambassador and contributor to the companys guidebooks.",
+      "userId": 2,
       "id": 5
     },
     {

@@ -14,7 +14,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { registerUser } from "../api/usersApi";
+import { registerUser } from "../../services/api/usersApi";
 
 function Copyright(props) {
   return (
@@ -34,7 +34,7 @@ function Copyright(props) {
   );
 }
 
-const SignUp = () => {
+const Register = () => {
   const navigate =  useNavigate()
 
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -233,4 +233,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Register;

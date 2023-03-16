@@ -14,7 +14,7 @@ import MuiAppBar from "@mui/material/AppBar";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link, useNavigate } from "react-router-dom";
 import {useDispatch} from "react-redux"
-import { getBlogs } from "../store/blogs-slice";
+import { getBlogs } from "../../store/blogs-slice";
 import { toast } from 'react-toastify';
 
 const drawerWidth = 180;
@@ -71,36 +71,19 @@ const Navbar = ({ handleDrawerOpen, open, handleDrawerClose }) => {
   };
 
   return (
-    <AppBar position="fixed" open={open} sx={{ backgroundColor: "black" }}>
+    <AppBar position="fixed" open={open} className="layout-color">
       <Toolbar>
         {isAdmin && (
           <IconButton
-            color="inherit"
+           style={{color:"white"}}
             aria-label="open drawer"
             onClick={handleDrawerOpen}
-            edge="start"
             sx={{ mr: 2, ...(open && { display: "none" }) }}
           >
             <MenuIcon />
           </IconButton>
         )}
-        <Typography
-          variant="h6"
-          noWrap
-          component="a"
-          href="/"
-          sx={{
-            mr: 2,
-            ml: 2,
-            display: "flex",
-            fontFamily: "monospace",
-            fontWeight: 700,
-            color: "inherit",
-            textDecoration: "none",
-          }}
-        >
-          Blogs
-        </Typography>
+        <img src="../blog-logo.png" alt="" height="35px" style={{marginLeft: "20px", cursor:"pointer"}} onClick={() => {navigate("/")}} role="link" />
         <Box sx={{ flexGrow: 1, display: "flex", marginLeft: "30px" }}>
           {pages.map((page) => (
             <Button key={page} sx={{ color: "white", display: "block" }}>

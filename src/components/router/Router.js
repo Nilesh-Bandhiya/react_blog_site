@@ -1,14 +1,14 @@
 import React from 'react'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import BlogDetail from "../pages/BlogDetail"
-import Blogs from "../pages/Blogs";
-import Login from "../pages/Login";
-import SignUp from "../pages/Register";
 import Users from "../pages/Users";
 import MainLayout from "../layout/MainLayout";
 import { ProtectedLoginRoute, ProtectedAdminRoute, ProtectedLogoutRoute, ProtectedUserRoute } from "../auth/ProtectedRoutes";
 import About from "../pages/About";
 import UserDetail from "../pages/UserDetail";
+import Blogs from '../pages/Blogs';
+import Login from '../pages/Login';
+import Register from '../pages/Register';
+import BlogDetail from '../pages/BlogDetail';
 
 const Router = () => {
 
@@ -23,7 +23,7 @@ const Router = () => {
             { path: "users", element: <ProtectedAdminRoute><Users /></ProtectedAdminRoute> },
             { path: "users/:userId", element: <ProtectedUserRoute><UserDetail /></ProtectedUserRoute> },
             { path: "about", element: <About /> },
-            { path: "signup", element: <ProtectedLogoutRoute><SignUp /></ProtectedLogoutRoute> },
+            { path: "signup", element: <ProtectedLogoutRoute><Register /></ProtectedLogoutRoute> },
             { path: "signin", element: <ProtectedLogoutRoute><Login /></ProtectedLogoutRoute> },
           ],
         },

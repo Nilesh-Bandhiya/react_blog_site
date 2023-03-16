@@ -85,3 +85,20 @@ export const deleteUser = async (user) => {
     toast.error(error.message);
   }
 };
+
+
+export const getUserDetails = async (userId) => {
+  try {
+    const response = await axios.get(
+      `http://localhost:5000/users/?id=${userId}`
+    );
+    const blog = await response.data[0];
+    if (blog) {
+      return blog;
+    } else {
+      toast.error("User Details not Found");
+    }
+  } catch (error) {
+    toast.error(error.message);
+  }
+}

@@ -4,10 +4,10 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useDispatch } from "react-redux";
-import { getUsers } from "../store/users-slice";
-import { deleteUser, updateUser } from "../api/usersApi";
-import { deleteBlog } from "../api/blogsApi";
-import { getBlogs } from "../store/blogs-slice";
+import { getUsers } from "../../store/users-slice";
+import { deleteUser, updateUser } from "../../services/api/usersApi";
+import { deleteBlog } from "../../services/api/blogsApi";
+import { getBlogs } from "../../store/blogs-slice";
 
 const ConfirmationDialog = ({ open, handleClose, data }) => {
   const dispatch = useDispatch();
