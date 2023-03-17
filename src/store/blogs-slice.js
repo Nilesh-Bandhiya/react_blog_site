@@ -1,13 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { APIS } from "../constants/constants";
 
 export const getBlogs = createAsyncThunk(
     'blog/getBlogs',
     async () => {
-        const res = await fetch('http://localhost:5000/blogs')
-        const data = await res.json()
-        return data;
+        try {
+            const response = await axios.get(APIS.BLOGS_API);
+            return response.data;
+        } catch (error) {
+            toast.error(error.message + "Blogs");
+        }
     })
-        
+
 const initialState = {
     blogs: [],
     loading: false,
