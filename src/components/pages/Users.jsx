@@ -11,6 +11,58 @@ const idHandler = (e) => {
   return <>{e?.node?.rowIndex + 1}</>;
 };
 
+const actionHandler = ({ data, handleDeleteOpen, handleRoleOpen }) => {
+  const changeRoleHandler = () => {
+    handleRoleOpen(data);
+  };
+
+  const deleteUserHandler = () => {
+    let newData = { ...data, key: "deleteUser" };
+    handleDeleteOpen(newData);
+  };
+
+  return (
+    <>
+      <Button
+        variant="contained"
+        color="warning"
+        size="small"
+        sx={{ marginRight: "10px" }}
+        onClick={changeRoleHandler}
+      >
+        Change Role
+      </Button>
+      <Button
+        variant="contained"
+        color="error"
+        size="small"
+        onClick={deleteUserHandler}
+      >
+        Delete
+      </Button>
+    </>
+  );
+};
+
+const statusHandler = ({ data, handleStatusOpen }) => {
+  const changeStatusHandler = () => {
+    handleStatusOpen(data);
+  };
+
+  return (
+    <>
+      <Button
+        variant="contained"
+        color={`${data?.active ? "success" : "error"}`}
+        size="small"
+        onClick={changeStatusHandler}
+      >
+        {data?.active ? "Active" : "In active"}
+      </Button>
+    </>
+  );
+};
+
 const Users = () => {
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state?.users);
@@ -18,22 +70,24 @@ const Users = () => {
   const filterKeys = ["firstName", "lastName", "email", "phoneNumber", "role"];
 
   const [search, setSearch] = useState("");
-  const [open, setOpen] = useState(false);
-  const [data, setData] = useState({});
+  const [deleteOpen, setDeleteOpen] = useState(false);
+  const [deleteData, setDeleteData] = useState({});
   const [roleOpen, setRoleOpen] = useState(false);
   const [roleData, setRoleData] = useState({});
   const [statusOpen, setStatusOpen] = useState(false);
   const [statusData, setStatusData] = useState({});
 
-  const handleOpen = () => {
-    setOpen(true);
+  const handleDeleteOpen = (data) => {
+    setDeleteData(data);
+    setDeleteOpen(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleDeleteClose = () => {
+    setDeleteOpen(false);
   };
 
-  const handleRoleOpen = () => {
+  const handleRoleOpen = (data) => {
+    setRoleData(data);
     setRoleOpen(true);
   };
 
@@ -41,7 +95,8 @@ const Users = () => {
     setRoleOpen(false);
   };
 
-  const handleStatusOpen = () => {
+  const handleStatusOpen = (data) => {
+    setStatusData(data);
     setStatusOpen(true);
   };
 
@@ -52,62 +107,6 @@ const Users = () => {
   useEffect(() => {
     dispatch(getUsers());
   }, [dispatch]);
-
-
-  const actionHandler = ({ data, handleOpen, handleRoleOpen }) => {
-    const changeRoleHandler = () => {
-      setRoleData(data)
-      handleRoleOpen();
-    };
-  
-    const deleteUserHandler = () => {
-      let newData = { ...data, key: "delete" };
-      setData(newData)
-      handleOpen();
-    };
-  
-    return (
-      <>
-        <Button
-          variant="contained"
-          color="warning"
-          size="small"
-          sx={{ marginRight: "10px" }}
-          onClick={changeRoleHandler}
-        >
-          Change Role
-        </Button>
-        <Button
-          variant="contained"
-          color="error"
-          size="small"
-          onClick={deleteUserHandler}
-        >
-          Delete
-        </Button>
-      </>
-    );
-  };
-
-  const statusHandler = ({ data, handleStatusOpen }) => {
-    const changeStatusHandler = () => {
-      setStatusData(data)
-      handleStatusOpen();
-    };
-  
-    return (
-      <>
-        <Button
-          variant="contained"
-          color={`${data?.active ? "success" : "error"}`}
-          size="small"
-          onClick={changeStatusHandler}
-        >
-          {data?.active ? "Active" : "In active"}
-        </Button>
-      </>
-    );
-  };
 
   const [columnDefs] = useState([
     {
@@ -142,7 +141,7 @@ const Users = () => {
       maxWidth: 350,
       cellRenderer: actionHandler,
       cellRendererParams: {
-        handleOpen,
+        handleDeleteOpen,
         handleRoleOpen,
       },
     },
@@ -204,9 +203,21 @@ const Users = () => {
           paginationAutoPageSize={true}
         />
       </div>
-      <RoleChangeDialog open={roleOpen} handleClose={handleRoleClose} data={roleData} />
-      <StatusChangeDialog open={statusOpen} handleClose={handleStatusClose} data={statusData} />
-      <ConfirmationDialog open={open} handleClose={handleClose} data={data} />
+      <RoleChangeDialog
+        open={roleOpen}
+        handleClose={handleRoleClose}
+        data={roleData}
+      />
+      <StatusChangeDialog
+        open={statusOpen}
+        handleClose={handleStatusClose}
+        data={statusData}
+      />
+      <ConfirmationDialog
+        open={deleteOpen}
+        handleClose={handleDeleteClose}
+        data={deleteData}
+      />
     </div>
   );
 };

@@ -5,7 +5,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useDispatch } from "react-redux";
 import { getUsers } from "../../store/users-slice";
-import { deleteUser, updateUser } from "../../services/api/usersApi";
+import { deleteUser } from "../../services/api/usersApi";
 import { deleteBlog } from "../../services/api/blogsApi";
 import { getBlogs } from "../../store/blogs-slice";
 
@@ -13,53 +13,23 @@ const ConfirmationDialog = ({ open, handleClose, data }) => {
   const dispatch = useDispatch();
 
   let firstName = data?.firstName;
-  let active = data?.active;
-  let role = data?.role;
   let key = data?.key;
   let title = data?.title;
 
   const confirmHandler = async () => {
-    if (key === "status") {
+    if (key === "deleteUser") {
       //in that case our data included with key and we don't need key anymore so first we need to delete key in the data
-      delete data['key'];
-      // first we need to change the status of user then we send put request to backend
-      let upadtedData = { ...data, active: !active,  };
-      await updateUser(upadtedData, key);
-      dispatch(getUsers());
-    } else if (key === "role") {
-       //in that case our data included with key and we don't need key anymore so first we need to delete key in the data
-       delete data['key'];
-      // first we need to change the role of user then we send put request to backend
-      let upadtedData = { ...data, role: role === "user" ? "admin" : "user" };
-      await updateUser(upadtedData, key);
-      dispatch(getUsers());
-    } else if (key === "delete") {
-       //in that case our data included with key and we don't need key anymore so first we need to delete key in the data
-       delete data['key'];
+      delete data["key"];
       await deleteUser(data);
       dispatch(getUsers());
     } else if (key === "deleteBlog") {
-       //in that case our data included with key and we don't need key anymore so first we need to delete key in the data
-       delete data['key'];
+      //in that case our data included with key and we don't need key anymore so first we need to delete key in the data
+      delete data["key"];
       await deleteBlog(data);
       dispatch(getBlogs());
-    } else {
-      console.log("not working in this time some error in confirmation dialog");
     }
     handleClose();
   };
-
-  const cardMessage = `Are you sure to ${
-    key !== "delete" && key !== "deleteBlog" ? "change" : ""
-  } ${key} ${key !== "delete" && key !== "deleteBlog" ? "of" : ""} ${
-    firstName ? firstName : title
-  }`;
-
-  const cancelBtnColor =
-    key === "delete" || key === "deleteBlog" ? "primary" : "error";
-  const ConfirmBtnColor =
-    key === "delete" || key === "deleteBlog" ? "error" : "primary";
-    const confirmBtn =  key !== "delete" && key !== "deleteBlog" ? "Change" : "Delete"
 
   return (
     <div>
@@ -69,12 +39,13 @@ const ConfirmationDialog = ({ open, handleClose, data }) => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{cardMessage}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{`Are you sure to delete ${
+          firstName ? firstName : title
+        }`}</DialogTitle>
         <DialogActions>
           <Button
             type="button"
             variant="outlined"
-            color={cancelBtnColor}
             onClick={handleClose}
             sx={{ marginRight: "10px" }}
           >
@@ -83,10 +54,10 @@ const ConfirmationDialog = ({ open, handleClose, data }) => {
           <Button
             onClick={confirmHandler}
             variant="contained"
-            color={ConfirmBtnColor}
+            color="error"
             autoFocus
           >
-            {confirmBtn}
+            Delete
           </Button>
         </DialogActions>
       </Dialog>

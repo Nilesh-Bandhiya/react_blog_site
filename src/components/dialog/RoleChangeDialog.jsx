@@ -6,7 +6,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { useDispatch } from "react-redux";
 import { getUsers } from "../../store/users-slice";
 import { updateUser } from "../../services/api/usersApi";
-import { DialogContent, FormControl, InputLabel, Select } from "@mui/material";
+import { DialogContent, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 const RoleChangeDialog = ({handleClose, open, data}) => {
     const dispatch = useDispatch()
@@ -38,15 +38,14 @@ const RoleChangeDialog = ({handleClose, open, data}) => {
             <FormControl sx={{ m:1 , minWidth: 180 }}>
             <InputLabel id="role">Role</InputLabel>
               <Select
-                native
                 value={role}    
                 labelId="role"
                 id="role"
                 onChange={(e) => setRole(e.target.value)}
                 label="Role"
               >
-                <option value="user">User</option>
-                <option value="admin">Admin</option>
+                <MenuItem value={"user"}>User</MenuItem>
+                <MenuItem value={"admin"}>Admin</MenuItem>
               </Select>
             </FormControl>
         </DialogContent>
