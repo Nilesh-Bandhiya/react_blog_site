@@ -8,7 +8,7 @@
       "password": "Radhe@321",
       "cpassword": "Radhe@321",
       "role": "admin",
-      "active": true,
+      "active": "false",
       "id": 1
     },
     {
@@ -29,7 +29,7 @@
       "email": "tulsi@gmail.com",
       "password": "Tulsi@321",
       "cpassword": "Tulsi@321",
-      "role": "admin",
+      "role": "user",
       "active": true,
       "id": 3
     },
@@ -41,7 +41,7 @@
       "password": "Hetakshi@321",
       "cpassword": "Hetakshi@321",
       "role": "user",
-      "active": true,
+      "active": "true",
       "id": 4
     },
     {
@@ -51,8 +51,8 @@
       "email": "shyam@gmail.com",
       "password": "Shyam@321",
       "cpassword": "Shyam@321",
-      "role": "admin",
-      "active": true,
+      "role": "user",
+      "active": "false",
       "id": 5
     },
     {

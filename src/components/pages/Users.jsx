@@ -4,60 +4,8 @@ import { Button, TextField } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { getUsers } from "../../store/users-slice";
 import ConfirmationDialog from "../dialog/ConfirmationDialog";
-
-const actionHandler = ({ data, handleOpen }) => {
-  const changeRoleHandler = () => {
-    let newData = { ...data, key: "role" };
-    handleOpen(newData);
-  };
-
-  const deleteUserHandler = () => {
-    let newData = { ...data, key: "delete" };
-    handleOpen(newData);
-  };
-
-  return (
-    <>
-      <Button
-        variant="contained"
-        color="warning"
-        size="small"
-        sx={{ marginRight: "10px" }}
-        onClick={changeRoleHandler}
-      >
-        Change Role
-      </Button>
-      <Button
-        variant="contained"
-        color="error"
-        size="small"
-        onClick={deleteUserHandler}
-      >
-        Delete
-      </Button>
-    </>
-  );
-};
-
-const statusHandler = ({ data, handleOpen }) => {
-  let newData = { ...data, key: "status" };
-  const changeStatusHandler = () => {
-    handleOpen(newData);
-  };
-
-  return (
-    <>
-      <Button
-        variant="contained"
-        color={`${data?.active ? "success" : "error"}`}
-        size="small"
-        onClick={changeStatusHandler}
-      >
-        {data?.active ? "Active" : "In active"}
-      </Button>
-    </>
-  );
-};
+import RoleChangeDialog from "../dialog/RoleChangeDialog";
+import StatusChangeDialog from "../dialog/StatusChangeDialog";
 
 const idHandler = (e) => {
   return <>{e?.node?.rowIndex + 1}</>;
@@ -72,9 +20,12 @@ const Users = () => {
   const [search, setSearch] = useState("");
   const [open, setOpen] = useState(false);
   const [data, setData] = useState({});
+  const [roleOpen, setRoleOpen] = useState(false);
+  const [roleData, setRoleData] = useState({});
+  const [statusOpen, setStatusOpen] = useState(false);
+  const [statusData, setStatusData] = useState({});
 
-  const handleOpen = (data) => {
-    setData(data);
+  const handleOpen = () => {
     setOpen(true);
   };
 
@@ -82,9 +33,81 @@ const Users = () => {
     setOpen(false);
   };
 
+  const handleRoleOpen = () => {
+    setRoleOpen(true);
+  };
+
+  const handleRoleClose = () => {
+    setRoleOpen(false);
+  };
+
+  const handleStatusOpen = () => {
+    setStatusOpen(true);
+  };
+
+  const handleStatusClose = () => {
+    setStatusOpen(false);
+  };
+
   useEffect(() => {
     dispatch(getUsers());
   }, [dispatch]);
+
+
+  const actionHandler = ({ data, handleOpen, handleRoleOpen }) => {
+    const changeRoleHandler = () => {
+      setRoleData(data)
+      handleRoleOpen();
+    };
+  
+    const deleteUserHandler = () => {
+      let newData = { ...data, key: "delete" };
+      setData(newData)
+      handleOpen();
+    };
+  
+    return (
+      <>
+        <Button
+          variant="contained"
+          color="warning"
+          size="small"
+          sx={{ marginRight: "10px" }}
+          onClick={changeRoleHandler}
+        >
+          Change Role
+        </Button>
+        <Button
+          variant="contained"
+          color="error"
+          size="small"
+          onClick={deleteUserHandler}
+        >
+          Delete
+        </Button>
+      </>
+    );
+  };
+
+  const statusHandler = ({ data, handleStatusOpen }) => {
+    const changeStatusHandler = () => {
+      setStatusData(data)
+      handleStatusOpen();
+    };
+  
+    return (
+      <>
+        <Button
+          variant="contained"
+          color={`${data?.active ? "success" : "error"}`}
+          size="small"
+          onClick={changeStatusHandler}
+        >
+          {data?.active ? "Active" : "In active"}
+        </Button>
+      </>
+    );
+  };
 
   const [columnDefs] = useState([
     {
@@ -108,7 +131,7 @@ const Users = () => {
       maxWidth: 120,
       cellRenderer: statusHandler,
       cellRendererParams: {
-        handleOpen,
+        handleStatusOpen,
       },
     },
     {
@@ -120,6 +143,7 @@ const Users = () => {
       cellRenderer: actionHandler,
       cellRendererParams: {
         handleOpen,
+        handleRoleOpen,
       },
     },
   ]);
@@ -149,7 +173,7 @@ const Users = () => {
           justifyContent: "flex-start",
           alignItems: "center",
           height: "4vw",
-          width: "85vw",
+          width: "83vw",
           margin: "0 auto",
         }}
       >
@@ -168,7 +192,7 @@ const Users = () => {
           margin: " 0 auto",
           boxSizing: "border-box",
           height: "72vh",
-          width: "85vw",
+          width: "83vw",
         }}
       >
         <AgGridReact
@@ -180,6 +204,8 @@ const Users = () => {
           paginationAutoPageSize={true}
         />
       </div>
+      <RoleChangeDialog open={roleOpen} handleClose={handleRoleClose} data={roleData} />
+      <StatusChangeDialog open={statusOpen} handleClose={handleStatusClose} data={statusData} />
       <ConfirmationDialog open={open} handleClose={handleClose} data={data} />
     </div>
   );
