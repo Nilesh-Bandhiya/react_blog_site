@@ -1,3 +1,9 @@
+# ***** First Setup the .env file in your root directory for start the project and add this line in .env file *****
+
+===>  REACT_APP_BASE_URL = http://localhost:5000
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
