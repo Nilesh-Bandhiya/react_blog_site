@@ -13,9 +13,9 @@ import { styled } from "@mui/material/styles";
 import MuiAppBar from "@mui/material/AppBar";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link, useNavigate } from "react-router-dom";
-import {useDispatch} from "react-redux"
+import { useDispatch } from "react-redux";
 import { getBlogs } from "../../store/blogs-slice";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const drawerWidth = 180;
 const pages = ["Home", "About"];
@@ -39,13 +39,13 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 const Navbar = ({ handleDrawerOpen, open, handleDrawerClose }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const token = JSON.parse(localStorage.getItem("token")) ;
-  const currentUser = token?.firstName
-  const currentUserId = token?.id
-  const isAdmin = token?.role === "admin"
+  const token = JSON.parse(localStorage.getItem("token"));
+  const currentUser = token?.firstName;
+  const currentUserId = token?.id;
+  const isAdmin = token?.role === "admin";
 
   const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -55,10 +55,10 @@ const Navbar = ({ handleDrawerOpen, open, handleDrawerClose }) => {
 
   const handleCloseUserMenu = (key) => {
     if (key === "Logout") {
-      handleDrawerClose()
-      toast.success("User Loggedout")
-      localStorage.removeItem("token")
-      dispatch(getBlogs())
+      handleDrawerClose();
+      toast.success("User Loggedout");
+      localStorage.removeItem("token");
+      dispatch(getBlogs());
       navigate("/");
     }
 
@@ -74,7 +74,7 @@ const Navbar = ({ handleDrawerOpen, open, handleDrawerClose }) => {
       <Toolbar>
         {isAdmin && (
           <IconButton
-           style={{color:"white"}}
+            style={{ color: "white" }}
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             sx={{ mr: 2, ...(open && { display: "none" }) }}
@@ -82,7 +82,16 @@ const Navbar = ({ handleDrawerOpen, open, handleDrawerClose }) => {
             <MenuIcon />
           </IconButton>
         )}
-        <img src="../blog-logo.png" alt="" height="35px" style={{marginLeft: "20px", cursor:"pointer"}} onClick={() => {navigate("/")}} role="link" />
+        <img
+          src="../blog-logo.png"
+          alt=""
+          height="35px"
+          style={{ marginLeft: "20px", cursor: "pointer" }}
+          onClick={() => {
+            navigate("/");
+          }}
+          role="link"
+        />
         <Box sx={{ flexGrow: 1, display: "flex", marginLeft: "30px" }}>
           {pages.map((page) => (
             <Button key={page} sx={{ color: "white", display: "block" }}>
@@ -100,7 +109,11 @@ const Navbar = ({ handleDrawerOpen, open, handleDrawerClose }) => {
         <Box sx={{ flexGrow: 0 }}>
           {currentUser ? (
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <Avatar alt={currentUser} src="....." />
+              <Avatar
+                alt={currentUser}
+                src="....."
+                style={{ color: "black" }}
+              />
             </IconButton>
           ) : (
             <Button variant="contained">

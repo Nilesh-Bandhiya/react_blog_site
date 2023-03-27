@@ -3,7 +3,16 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import { Box, Grid, TextField } from "@mui/material";
+import {
+  Box,
+  FormControl,
+  FormHelperText,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 import Textarea from "@mui/joy/Textarea";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -170,17 +179,22 @@ const BlogDialog = ({ open, handleEditClose, formData, currentUserId }) => {
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <TextField
-                    required
-                    fullWidth
-                    {...register("category")}
-                    error={errors.category ? true : false}
-                    helperText={errors.category?.message}
-                    id="category"
-                    label="Category"
-                    name="category"
-                    autoComplete="category"
-                  />
+                  <FormControl sx={{ minWidth: 270 }}>
+                    <InputLabel id="category-label">Category</InputLabel>
+                    <Select
+                      labelId="category-label"
+                      id="category"
+                      {...register("category")}
+                      error={errors.category ? true : false}
+                      label="Category"
+                      value={category || "CS-IT"}
+                    >
+                      <MenuItem value={'CS-IT'}>CS-IT</MenuItem>
+                      <MenuItem value={'Travel'}>Travel</MenuItem>
+                      <MenuItem value={'Food'}>Food</MenuItem>
+                    </Select>
+                    <FormHelperText>{errors.category?.message}</FormHelperText>
+                  </FormControl>
                 </Grid>
                 <Grid item xs={12}>
                   <TextField

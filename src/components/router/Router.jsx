@@ -9,6 +9,7 @@ import Blogs from '../pages/Blogs';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import BlogDetail from '../pages/BlogDetail';
+import PageNotFound from '../pages/PageNotFound';
 
 const Router = () => {
 
@@ -25,6 +26,7 @@ const Router = () => {
             { path: "about", element: <About /> },
             { path: "signup", element: <ProtectedLogoutRoute><Register /></ProtectedLogoutRoute> },
             { path: "signin", element: <ProtectedLogoutRoute><Login /></ProtectedLogoutRoute> },
+            { path: "*", element: <PageNotFound /> },
           ],
         },
       ]);

@@ -6,24 +6,32 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { useDispatch } from "react-redux";
 import { getUsers } from "../../store/users-slice";
 import { updateUser } from "../../services/api/usersApi";
-import { DialogContent, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import {
+  DialogContent,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@mui/material";
 
-const RoleChangeDialog = ({handleClose, open, data}) => {
-    const dispatch = useDispatch()
+const RoleChangeDialog = ({ handleClose, open, data }) => {
+  const dispatch = useDispatch();
 
-    const [role, setRole] = useState('')
+  const [role, setRole] = useState("");
 
-    useEffect(() => {
-       setRole(data?.role)
-    },[data?.role])
-
-    const roleChangeHandler = async (e) => {
-        e.preventDefault()
-        let upadtedData = { ...data, role: role };
-        await updateUser(upadtedData, "role");
-        dispatch(getUsers());
-        handleClose()
+  useEffect(() => {
+    if (data?.role !== undefined) {
+      setRole(data?.role);
     }
+  }, [data?.role]);
+
+  const roleChangeHandler = async (e) => {
+    e.preventDefault();
+    let upadtedData = { ...data, role: role };
+    await updateUser(upadtedData, "role");
+    dispatch(getUsers());
+    handleClose();
+  };
 
   return (
     <div>
@@ -34,22 +42,22 @@ const RoleChangeDialog = ({handleClose, open, data}) => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">{`Change Role of ${data?.firstName}`}</DialogTitle>
-        <DialogContent sx={{margin: "0 auto" }}>
-            <FormControl sx={{ m:1 , minWidth: 180 }}>
+        <DialogContent sx={{ margin: "0 auto" }}>
+          <FormControl sx={{ m: 1, minWidth: 180 }}>
             <InputLabel id="role">Role</InputLabel>
-              <Select
-                value={role}    
-                labelId="role"
-                id="role"
-                onChange={(e) => setRole(e.target.value)}
-                label="Role"
-              >
-                <MenuItem value={"user"}>User</MenuItem>
-                <MenuItem value={"admin"}>Admin</MenuItem>
-              </Select>
-            </FormControl>
+            <Select
+              value={role || ""}
+              labelId="role"
+              id="role"
+              onChange={(e) => setRole(e.target.value)}
+              label="Role"
+            >
+              <MenuItem value={"user"}>User</MenuItem>
+              <MenuItem value={"admin"}>Admin</MenuItem>
+            </Select>
+          </FormControl>
         </DialogContent>
-        <DialogActions sx={{margin:"0 auto 10px auto"}}>
+        <DialogActions sx={{ margin: "0 auto 10px auto" }}>
           <Button
             type="button"
             variant="outlined"
@@ -70,7 +78,7 @@ const RoleChangeDialog = ({handleClose, open, data}) => {
         </DialogActions>
       </Dialog>
     </div>
-  )
-}
+  );
+};
 
-export default RoleChangeDialog
+export default RoleChangeDialog;

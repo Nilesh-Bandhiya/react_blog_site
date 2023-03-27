@@ -17,10 +17,12 @@ import {
 const StatusChangeDialog = ({ handleClose, open, data }) => {
   const dispatch = useDispatch();
 
-  const [active, setActive] = useState();
+  const [active, setActive] = useState(false);
 
   useEffect(() => {
-    setActive(data?.active);
+    if (data?.active !== undefined) {
+      setActive(data?.active);
+    }
   }, [data?.active]);
 
   const statusChangeHandler = async (e) => {
@@ -44,11 +46,11 @@ const StatusChangeDialog = ({ handleClose, open, data }) => {
           <FormControl sx={{ m: 1, minWidth: 180 }}>
             <InputLabel id="status-label">Status</InputLabel>
             <Select
-              value={active}
               labelId="status-label"
               id="status"
               onChange={(e) => setActive(e.target.value)}
               label="Status"
+              value={active}
             >
               <MenuItem value={true}>Active</MenuItem>
               <MenuItem value={false}>Inactive</MenuItem>

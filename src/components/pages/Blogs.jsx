@@ -222,7 +222,7 @@ const Blogs = () => {
           style={{
             margin: "0 auto",
             boxSizing: "border-box",
-            height: "72vh",
+            height: "66vh",
             width: "80vw",
           }}
         >
@@ -232,7 +232,7 @@ const Blogs = () => {
             defaultColDef={defaultColDef}
             animateRows={true}
             pagination={true}
-            paginationAutoPageSize={true}
+            paginationPageSize={8}
           />
         </div>
       </div>
