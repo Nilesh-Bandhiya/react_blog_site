@@ -11,7 +11,6 @@ import { getBlogs } from "../../store/blogs-slice";
 import BlogDialog from "../dialog/BlogDialog";
 import ConfirmationDialog from "../dialog/ConfirmationDialog";
 
-
 const actionHandler = ({ handleDeleteOpen, handleEditOpen, data }) => {
   const editBlogHandler = () => {
     handleEditOpen(data);
@@ -178,11 +177,13 @@ const Blogs = () => {
   );
 
   const filterHandler = (data) => {
-    return data?.filter((blog) =>
-      filterKeys.some((key) =>
-        blog[key].toLowerCase().includes(search.toLowerCase())
-      )
-    );
+    if (data !== undefined) {
+      return data?.filter((blog) =>
+        filterKeys.some((key) =>
+          blog[key].toLowerCase().includes(search.toLowerCase())
+        )
+      );
+    }
   };
 
   useEffect(() => {

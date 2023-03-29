@@ -45,6 +45,7 @@ const BlogDialog = ({ open, handleEditClose, formData, currentUserId }) => {
     register,
     handleSubmit,
     setValue,
+    watch,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validation),
@@ -180,20 +181,22 @@ const BlogDialog = ({ open, handleEditClose, formData, currentUserId }) => {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <FormControl sx={{ minWidth: 270 }}>
-                    <InputLabel id="category-label">Category</InputLabel>
+                  <InputLabel id="category-label" sx={{color: errors.category ? "red" : ""}}>Category</InputLabel>
                     <Select
+                     required
                       labelId="category-label"
                       id="category"
                       {...register("category")}
                       error={errors.category ? true : false}
                       label="Category"
-                      value={category || "CS-IT"}
+                      name="category"
+                      value={watch("category")}
                     >
                       <MenuItem value={'CS-IT'}>CS-IT</MenuItem>
                       <MenuItem value={'Travel'}>Travel</MenuItem>
                       <MenuItem value={'Food'}>Food</MenuItem>
                     </Select>
-                    <FormHelperText>{errors.category?.message}</FormHelperText>
+                    <FormHelperText sx={{color :"red" }}>{errors.category?.message}</FormHelperText>
                   </FormControl>
                 </Grid>
                 <Grid item xs={12}>
