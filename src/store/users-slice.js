@@ -10,7 +10,7 @@ import { APIS } from "../constants/constants";
         const response = await axios.get(APIS.USERS_API);
         return response.data;
     } catch (error) {
-        toast.error(error.message + "Blogs");
+        toast.error(error.message + "Users");
     }
   })
 
